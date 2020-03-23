@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="Needs & Volunteers site for the Kern River Valley" />
+		<meta name="keywords" content="" />
+		<title>Kern River Valley Needs &amp; Volunteers</title>
+		<script type="module" src="/js/index.js" async=""></script>
+		<link rel="stylesheet" href="/css/index.css" media="all" />
+	</head>
+	<body class="background-primary color-default font-main border-box smooth-scroll">
+		<header id="header"></header>
+		<nav id="nav"></nav>
+		<main id="main">
+			<form name="request" id="request-form" class="card shadow inline-block">
+				<fieldset class="no-border">
+					<legend>Submit a Request</legend>
+					<div class="input-group">
+						<label>
+							<div>Name</div>
+							<input type="text" name="name" id="name" class="input" placeholder="First Last" autocomplete="name" required="" />
+						</label>
+					</div>
+					<div class="input-group">
+						<label>
+							<div>Email</div>
+							<input type="email" name="email" id="email" class="input" placeholder="user@example.com" autocomplete="email" required="" />
+						</label>
+					</div>
+					<div class="input-group">
+						<label>
+							<div>Phone</div>
+							<input type="tel" name="telephone" id="telephone" class="input" placeholder="+1-555-555-5555" autocomplete="tel" required="" />
+						</label>
+					</div>
+					<div class="input-group">
+						<label>
+							<div>Address</div>
+							<input type="text" name="streetAddress" id="street-address" class="input" placeholder="123 Some St" pattern="\d{1,6}\s[A-z\s\.]+" autocomplete="street-address" required="" />
+						</label>
+						<br />
+						<input type="text" name="addressLocality" id="address-locality" class="input" placeholder="City" list="cities-suggestions" autocomplete="address-level2" required="" />,
+						<input type="text" name="addressRegion" id="address-region" class="input" placeholder="State" maxlength="12" size="5" minlength="2" autocomplete="address-level1" required="" />
+						<input type="text" name="postalCode" id="postal-code" class="input" inputmode="numberic" placeholder="#####" maxlength="5" minlength="5" size="5" autocomplete="postal-code" required="" />
+						<datalist id="cities-list">
+							<option value="Lake Isabella" />
+							<option value="Wofford Heights" />
+							<option value="Kernville" />
+							<option value="Weldon" />
+						</datalist>
+					</div>
+					<div class="input-group">
+						<label>
+							<div>Request</div>
+							<textarea name="request" id="request" class="input" placeholder="Please describe your needs" cols="54" rows="8" autocomplete="off" required=""></textarea>
+						</label>
+					</div>
+				</fieldset>
+				<div class="flex btns">
+					<button type="submit" class="btn btn-accept btn-wide">Submit</button>
+					<span class="spacer">&nbsp;</span>
+					<button type="reset" class="btn btn-reject btn-wide">Reset</button>
+				</div>
+			</form>
+		</main>
+		<aside id="sidebar"></aside>
+		<footer id="footer"></footer>
+	</body>
+</html>

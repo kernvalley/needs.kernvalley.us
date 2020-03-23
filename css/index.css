@@ -1,0 +1,51 @@
+@import url("https://cdn.kernvalley.us/css/core-css/element.css");
+@import url("https://cdn.kernvalley.us/css/core-css/rem.css");
+@import url("https://cdn.kernvalley.us/css/core-css/class-rules.css");
+@import url("https://cdn.kernvalley.us/css/core-css/fonts.css");
+@import url("https://cdn.kernvalley.us/css/core-css/theme/default/index.css");
+@import url("https://cdn.kernvalley.us/css/core-css/class-rules.css");
+@import url("https://cdn.kernvalley.us/css/core-css/scrollbar.css");
+
+:root {
+	--scrollbar-color: var(--accent-color);
+	--scrollbar-track: var(--primary-color);
+	--slideshow-width: 28rem;
+	--slideshow-height: calc(9 * var(--slideshow-width) / 16);
+}
+
+button.btn[is="share-button"] {
+	bottom: 1rem;
+	right: 1rem;
+	border-radius: 50%;
+	padding: 0.8rem;
+	font-size: 1.5rem;
+}
+
+.btns {
+	justify-content: space-evenly;
+}
+
+.btns > .btn {
+	flex: 1 1 auto;
+}
+
+.input-group:not(:last-of-type) {
+	margin-top: 0.6em;
+}
+
+.input-group .input {
+	background: inherit;
+	color: inherit;
+	padding: 0.8em;
+	border-style: solid;
+	border-width: 0 0 1px 0;
+}
+
+.input-group .input:focus {
+	border-style: dotted;
+	border-width: 1px;
+}
+
+.input-group label > input:only-of-type {
+	width: 100%;
+}
