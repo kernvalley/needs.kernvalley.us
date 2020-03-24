@@ -30,7 +30,3 @@
 		transform: rotate(1turn);
 	}
 }
-
-:root.no-js not-supported {
-	display: none;
-}
