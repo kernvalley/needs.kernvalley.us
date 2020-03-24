@@ -33,11 +33,11 @@
   "homepage": "https://github.com/kernvalley/needs.kernvalley.us",
   "scripts": {
     "preinstall": "if [ -f '.gitmodules' ]; then git submodule update --recursive --init; fi",
-    "postinstall": "npm run build:icons",
+    "postinstall": "npm run build",
     "start": "npm run netlify:live",
     "test": "npm run lint:js && npm run lint:css",
     "fix": "npm run fix:js && npm run fix:css",
-    "build": "npm run build:icons",
+    "build": "npm run build:icons && npm run build:js && npm run build:css",
     "build:all": "npm run build:js && npm run build:css && npm run build:icons",
     "build:css": "if [ -f 'postcss.config.js' ]; then postcss ${npm_package_config_dir_css}index.css -o ${npm_package_config_dir_css}index.min.css; fi",
     "build:js": "if [ -f 'rollup.config.js' ]; then rollup --config; fi",
