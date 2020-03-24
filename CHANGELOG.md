@@ -9,3 +9,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial batch of components
 - Various config files
 - README, etc.
+### Fixed
+- `User` extending `EventTarget` isn't supported in Edge or Safari

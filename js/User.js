@@ -1,4 +1,5 @@
 import { ENDPOINT } from './consts.js';
+import EventTarget from './EventTarget.js';
 
 export default class User extends EventTarget {
 	constructor() {

@@ -92,19 +92,6 @@ export default class Router {
 		const [route = '', ...args] = hash.substr(1).split('/').filter(part => part !== '');
 		const params = Object.fromEntries(new URLSearchParams(search).entries());
 
-		console.info({
-			href,
-			origin,
-			pathname,
-			hash,
-			route,
-			args,
-			search,
-			params,
-			user: Router.user,
-			router: Router,
-		});
-
 		return {
 			href,
 			origin,
@@ -140,5 +127,3 @@ export default class Router {
 		window.addEventListener('hashchange', () => handler(Router.route));
 	}
 }
-
-window.Router = Router;
