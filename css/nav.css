@@ -1,3 +1,7 @@
+:root.no-js #nav > * {
+	display: none;
+}
+
 #nav.flex {
 	justify-content: space-evenly;
 }
