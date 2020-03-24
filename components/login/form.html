@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="uft-8" />
+		<link rel="stylesheet" href="/components/login/form.css" media="all" />
+	</head>
+	<body>
+		<form name="login" class="card shadow">
+			<fieldset class="no-border">
+				<legend>Login</legend>
+				<div class="input-group">
+					<label>
+						<div>
+							<svg class="current-color icon" width="14" height="16" viewBox="0 0 14 16">
+								<path fill-rule="evenodd" d="M0 4v8c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H1c-.55 0-1 .45-1 1zm13 0L7 9 1 4h12zM1 5.5l4 3-4 3v-6zM2 12l3.5-3L7 10.5 8.5 9l3.5 3H2zm11-.5l-4-3 4-3v6z"/>
+							</svg>
+							<span>Email</span>
+						</div>
+						<input type="email" name="email" id="email" class="input" placeholder="user@example.com" autocomplete="email" required="" />
+					</label>
+				</div>
+				<div class="input-group">
+					<label>
+						<div>
+							<svg class="current-color icon" height="16" width="16" viewBox="0 0 16 16">
+								<path d="M5 3C2.25 3 0 5.25 0 8s2.25 5 5 5c1.586 0 2.903-.845 3.813-2h5.593l.22-.75 1.03-4L15.97 5H8.813C7.903 3.845 6.586 3 5 3zm0 2c1.116 0 2.038.595 2.563 1.5l.312.5h5.531l-.53 2H7.874l-.312.5C7.038 10.405 6.116 11 5 11c-1.669 0-3-1.331-3-3s1.331-3 3-3z" overflow="visible"/>
+								<path d="M14.498 8H9l-.563 2H14z" opacity=".35" overflow="visible"/>
+								<path d="M5 8a1 1 0 1 1-2 0 1 1 0 1 1 2 0z" overflow="visible"/>
+							</svg>
+							<span>Password</span>
+						</div>
+						<input type="password" name="password" id="password" class="input" minlength="6" maxlength="70" placeholder="********" autocomplete="current-password" required="" />
+					</label>
+				</div>
+			</fieldset>
+			<div class="flex btns">
+				<button type="submit" class="btn btn-accept btn-wide">
+					<svg class="current-color icon" height="12" width="16" viewBox="0 0 12 16">
+						<path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"/>
+					</svg>
+					<span>Submit</span>
+				</button>
+				<span class="spacer">&nbsp;</span>
+				<button type="reset" class="btn btn-reject btn-wide">
+					<svg class="current-color icon" height="16" width="12" viewBox="0 0 12 16">
+						<path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/>
+					</svg>
+					<span>Reset</span>
+				</button>
+			</div>
+			<br />
+			<div class="flex row btns">
+				<a href="/#register" role="button" class="btn btn-primary btn-wide center">
+					<svg class="current-color icon" height="16" width="16" viewBox="0 0 16 16">
+						<g transform="translate(-261 -727)">
+							<path d="M269.55 735.09c-.705.624-1.54.906-2.555.906s-1.853-.29-2.558-.914c-1.11.363-2.436 1.288-2.438 2.902l-.004 3.012c0 .554.446 1 1 1h8c.554 0 1-.446 1-1v-3c0-1.387-1.102-2.556-2.445-2.906z"></path>
+							<circle cx="49.5" cy="342.5" r="2.5" transform="matrix(1.2 0 0 1.2 207.6 321)"></circle>
+						<path d="M273 728v1.997h-2v1.996h2v1.997h2v-1.997h2v-1.996h-2V728z"></path>
+						</g>
+					</svg>
+					<span>Register</span>
+				</a>
+			</div>
+		</form>
+	</body>
+</html>

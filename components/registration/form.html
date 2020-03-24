@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="uft-8" />
+		<link rel="stylesheet" href="/components/registration/form.css" media="all" />
+	</head>
+	<body>
+		<form name="registration" class="card shadow">
+			<fieldset class="no-border">
+				<legend>Register</legend>
+				<div class="input-group">
+					<label>
+						<div>Name</div>
+						<input type="text" name="name" id="name" class="input" placeholder="First Last" autocomplete="name" required="" />
+					</label>
+				</div>
+				<div class="input-group">
+					<label>
+						<div>Email</div>
+						<input type="email" name="email" id="email" class="input" placeholder="user@example.com" autocomplete="email" required="" />
+					</label>
+				</div>
+				<div class="input-group">
+					<label>
+						<div>Password</div>
+						<input type="password" name="password" id="password" class="input" minlength="6" maxlength="70" placeholder="********" autocomplete="new-password" required="" />
+					</label>
+				</div>
+				<div class="input-group">
+					<label>
+						<div>Phone</div>
+						<input type="tel" name="telephone" id="telephone" class="input" placeholder="+1-555-555-5555" autocomplete="tel" required="" />
+					</label>
+				</div>
+				<div class="input-group">
+					<label>
+						<div>Address</div>
+						<input type="text" name="streetAddress" id="street-address" class="input" placeholder="123 Some St" pattern="\d{1,6}\s[A-z\s\.]+" autocomplete="street-address" required="" />
+					</label>
+					<br />
+					<input type="text" name="addressLocality" id="address-locality" class="input" placeholder="City" list="cities-suggestions" autocomplete="address-level2" required="" />,
+					<input type="text" name="addressRegion" id="address-region" class="input" placeholder="State" maxlength="12" size="5" minlength="2" autocomplete="address-level1" required="" />
+					<input type="text" name="postalCode" id="postal-code" class="input" inputmode="numberic" placeholder="#####" maxlength="5" minlength="5" size="5" autocomplete="postal-code" required="" />
+					<datalist id="cities-list">
+						<option value="Lake Isabella" />
+						<option value="Wofford Heights" />
+						<option value="Kernville" />
+						<option value="Weldon" />
+					</datalist>
+				</div>
+			</fieldset>
+			<div class="flex btns">
+				<button type="submit" class="btn btn-accept btn-wide">
+					<svg class="current-color icon" height="12" width="16" viewBox="0 0 12 16">
+						<path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"/>
+					</svg>
+					<span>Submit</span>
+				</button>
+				<span class="spacer">&nbsp;</span>
+				<button type="reset" class="btn btn-reject btn-wide">
+					<svg class="current-color icon" height="16" width="12" viewBox="0 0 12 16">
+						<path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/>
+					</svg>
+					<span>Reset</span>
+				</button>
+			</div>
+			<br />
+			<div class="flex row btns">
+				<a href="/#login" role="button" class="btn btn-primary btn-wide center">
+					<svg class="current-color icon" height="16" width="16" viewBox="0 0 14 16">
+						<path fill-rule="evenodd" d="M7 6.75V12h4V8h1v4c0 .55-.45 1-1 1H7v3l-5.45-2.72c-.33-.17-.55-.52-.55-.91V1c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v3h-1V1H3l4 2v2.25L10 3v2h4v2h-4v2L7 6.75z"></path>
+					</svg>
+					<span>Login</span>
+				</a>
+			</div>
+		</form>
+	</body>
+</html>

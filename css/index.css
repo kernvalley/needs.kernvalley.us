@@ -3,8 +3,11 @@
 @import url("https://cdn.kernvalley.us/css/core-css/class-rules.css");
 @import url("https://cdn.kernvalley.us/css/core-css/fonts.css");
 @import url("https://cdn.kernvalley.us/css/core-css/theme/default/index.css");
+@import url("https://cdn.kernvalley.us/css/core-css/layout/index.css");
 @import url("https://cdn.kernvalley.us/css/core-css/class-rules.css");
 @import url("https://cdn.kernvalley.us/css/core-css/scrollbar.css");
+@import url("./nav.css");
+@import url("./main.css");
 
 :root {
 	--scrollbar-color: var(--accent-color);

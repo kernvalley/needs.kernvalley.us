@@ -1,70 +1,124 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="no-js">
+<html lang="en" dir="ltr" class="no-js" data-theme="auto" data-layout="right-sidebar">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content="Needs & Volunteers site for the Kern River Valley" />
+		<meta name="description" content="Needs &amp; Volunteers site for the Kern River Valley" />
 		<meta name="keywords" content="" />
-		<title>Kern River Valley Needs &amp; Volunteers</title>
+		<title>Kern River Valley Healthy Shopping Resource</title>
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=AbortController%2CArray.from%2CArray.isArray%2CArray.prototype.every%2CArray.prototype.fill%2CArray.prototype.find%2CArray.prototype.includes%2CArray.prototype.some%2CCustomEvent%2CDOMTokenList%2CDate.prototype.toISOString%2CDocumentFragment%2CDocumentFragment.prototype.append%2CDocumentFragment.prototype.prepend%2CElement.prototype.append%2CElement.prototype.classList%2CElement.prototype.cloneNode%2CElement.prototype.closest%2CElement.prototype.dataset%2CElement.prototype.matches%2CElement.prototype.prepend%2CElement.prototype.remove%2CElement.prototype.replaceWith%2CElement.prototype.scrollIntoView%2CElement.prototype.toggleAttribute%2CHTMLTemplateElement%2CMutationObserver%2CNavigator.prototype.geolocation%2CObject.fromEntries%2CObject.keys%2CPageVisibility%2CPromise%2CSet%2CURL%2CURLSearchParams%2CWeakSet%2CWeakMap%2CWebAnimations%2Cdocument.visibilityState%2Cdom4%2Chtml5shiv%2CmatchMedia%2Cnavigator.geolocation%2Cnavigator.sendBeacon%2CscrollIntoView"></script>
 		<script type="module" src="/js/index.js" async=""></script>
+		<script src="/js/index.min.js" async="" nomodule=""></script>
 		<link rel="stylesheet" href="/css/index.css" media="all" />
 	</head>
-	<body class="background-primary color-default font-main border-box smooth-scroll">
+	<body class="background-primary color-default font-main border-box smooth-scroll grid overflow-x-hidden">
 		<header id="header"></header>
-		<nav id="nav"></nav>
+		<nav id="nav" class="sticky top shadow z-4 background-accent color-alt flex row nowrap">
+			<a href="/#" role="button" class="inline-block center">
+				<svg class="current-color icon" height="16" width="16" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M16 9l-3-3V2h-2v2L8 1 0 9h2l1 5c0 .55.45 1 1 1h8c.55 0 1-.45 1-1l1-5h2zm-4 5H9v-4H7v4H4L2.81 7.69 8 2.5l5.19 5.19L12 14z"/>
+				</svg>
+				<br />
+				<span>Home</span>
+			</a>
+			<login-button role="button" tabindex="0" class="inline-block center" hidden="">
+				<svg class="current-color icon" height="16" width="16" viewBox="0 0 14 16">
+					<path fill-rule="evenodd" d="M7 6.75V12h4V8h1v4c0 .55-.45 1-1 1H7v3l-5.45-2.72c-.33-.17-.55-.52-.55-.91V1c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v3h-1V1H3l4 2v2.25L10 3v2h4v2h-4v2L7 6.75z"/>
+				</svg>
+				<br />
+				<span>Login</span>
+			</login-button>
+			<register-button role="button" tabindex="0" class="inline-block center" hidden="">
+				<svg class="current-color icon" height="16" width="16" viewBox="0 0 16 16">
+					<g transform="translate(-261 -727)">
+						<path d="M269.55 735.09c-.705.624-1.54.906-2.555.906s-1.853-.29-2.558-.914c-1.11.363-2.436 1.288-2.438 2.902l-.004 3.012c0 .554.446 1 1 1h8c.554 0 1-.446 1-1v-3c0-1.387-1.102-2.556-2.445-2.906z"/>
+						<circle cx="49.5" cy="342.5" r="2.5" transform="matrix(1.2 0 0 1.2 207.6 321)"/>
+					<path d="M273 728v1.997h-2v1.996h2v1.997h2v-1.997h2v-1.996h-2V728z"/>
+					</g>
+				</svg>
+				<br />
+				<span>Register</span>
+			</register-button>
+			<a role="button" href="/#requests" class="inline-block center">
+				<svg class="current-color icon" height="16" width="14" viewBox="0 0 14 16">
+					<path fill-rule="evenodd" d="M13 4h-1.38c.19-.33.33-.67.36-.91.06-.67-.11-1.22-.52-1.61C11.1 1.1 10.65 1 10.1 1h-.11c-.53.02-1.11.25-1.53.58-.42.33-.73.72-.97 1.2-.23-.48-.55-.88-.97-1.2-.42-.32-1-.58-1.53-.58h-.03c-.56 0-1.06.09-1.44.48-.41.39-.58.94-.52 1.61.03.23.17.58.36.91H1.98c-.55 0-1 .45-1 1v3h1v5c0 .55.45 1 1 1h9c.55 0 1-.45 1-1V8h1V5c0-.55-.45-1-1-1H13zm-4.78-.88c.17-.36.42-.67.75-.92.3-.23.72-.39 1.05-.41h.09c.45 0 .66.11.8.25s.33.39.3.95c-.05.19-.25.61-.5 1h-2.9l.41-.88v.01zM4.09 2.04c.13-.13.31-.25.91-.25.31 0 .72.17 1.03.41.33.25.58.55.75.92L7.2 4H4.3c-.25-.39-.45-.81-.5-1-.03-.56.16-.81.3-.95l-.01-.01zM7 12.99H3V8h4v5-.01zm0-6H2V5h5v2-.01zm5 6H8V8h4v5-.01zm1-6H8V5h5v2-.01z"/>
+				</svg>
+				<br />
+				<span>Request</span>
+			</a>
+			<a role="button" href="/#contact" class="inline-block center">
+				<svg class="current-color icon" height="16" width="16" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M15 1H6c-.55 0-1 .45-1 1v2H1c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h1v3l3-3h4c.55 0 1-.45 1-1V9h1l3 3V9h1c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zM9 11H4.5L3 12.5V11H1V5h4v3c0 .55.45 1 1 1h3v2zm6-3h-2v1.5L11.5 8H6V2h9v6z"/>
+				</svg>
+				<br />
+				<span>Contact</span>
+			</a>
+			<logout-button role="button" tabindex="0" class="inline-block center" hidden="">
+				<svg class="current-color icon" height="16" width="16" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M11.992 8.994V6.996H7.995v-2h3.997V2.999l3.998 2.998-3.998 2.998zm-1.998 2.998H5.996V2.998L2 1h7.995v2.998h1V1c0-.55-.45-.999-1-.999H.999A1.001 1.001 0 0 0 0 1v11.372c0 .39.22.73.55.91L5.996 16v-3.008h3.998c.55 0 1-.45 1-1V7.996h-1v3.998z"/>
+				</svg>
+				<br />
+				<span>Logout</span>
+			</logout-button>
+			<button type="button" class="center" data-action="settings">
+				<svg class="current-color icon" width="14" height="16" viewBox="0 0 14 16">
+					<path fill-rule="evenodd" d="M14 8.77v-1.6l-1.94-.64-.45-1.09.88-1.84-1.13-1.13-1.81.91-1.09-.45-.69-1.92h-1.6l-.63 1.94-1.11.45-1.84-.88-1.13 1.13.91 1.81-.45 1.09L0 7.23v1.59l1.94.64.45 1.09-.88 1.84 1.13 1.13 1.81-.91 1.09.45.69 1.92h1.59l.63-1.94 1.11-.45 1.84.88 1.13-1.13-.92-1.81.47-1.09L14 8.75v.02zM7 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+				</svg>
+				<br />
+				<span>Settings</span>
+			</button>
+		</nav>
 		<main id="main">
-			<form name="request" id="request-form" class="card shadow inline-block">
-				<fieldset class="no-border">
-					<legend>Submit a Request</legend>
-					<div class="input-group">
-						<label>
-							<div>Name</div>
-							<input type="text" name="name" id="name" class="input" placeholder="First Last" autocomplete="name" required="" />
-						</label>
+			<noscript>This site requires JavaScript to function.</noscript>
+			<not-supported class="center">
+				<div class="card center inline-block">
+					<h4 class="center">Your browser is not supported</h4>
+					<p>Please install one of these freely avaialble web browsers.</p>
+					<div id="upgrade-browser" class="center">
+						<a href="https://www.mozilla.org/en-US/firefox/new/" rel="noopener external" class="browser center inline-block">
+							<img src="/img/logos/firefox.svg" width="96" height="96" alt="Firefox logo" decoding="async" loading="lazy" />
+							<br />
+							<span>Firefox</span>
+						</a>
+						<a href="https://www.google.com/intl/en/chrome/browser/" rel="noopener external" class="browser center inline-block">
+							<img src="/img/logos/chrome.svg" width="96" height="96" alt="Chrome logo" decoding="async" loading="lazy" />
+							<br />
+							<span>Chrome</span>
+						</a>
+						<a href="https://www.microsoft.com/en-us/edge" rel="noopener external" class="browser center inline-block">
+							<img src="/img/edge.svg" width="96" height="96" alt="Edge logo" decoding="async" loading="lazy" />
+							<br />
+							<span>Edge</span>
+						</a>
 					</div>
-					<div class="input-group">
-						<label>
-							<div>Email</div>
-							<input type="email" name="email" id="email" class="input" placeholder="user@example.com" autocomplete="email" required="" />
-						</label>
-					</div>
-					<div class="input-group">
-						<label>
-							<div>Phone</div>
-							<input type="tel" name="telephone" id="telephone" class="input" placeholder="+1-555-555-5555" autocomplete="tel" required="" />
-						</label>
-					</div>
-					<div class="input-group">
-						<label>
-							<div>Address</div>
-							<input type="text" name="streetAddress" id="street-address" class="input" placeholder="123 Some St" pattern="\d{1,6}\s[A-z\s\.]+" autocomplete="street-address" required="" />
-						</label>
-						<br />
-						<input type="text" name="addressLocality" id="address-locality" class="input" placeholder="City" list="cities-suggestions" autocomplete="address-level2" required="" />,
-						<input type="text" name="addressRegion" id="address-region" class="input" placeholder="State" maxlength="12" size="5" minlength="2" autocomplete="address-level1" required="" />
-						<input type="text" name="postalCode" id="postal-code" class="input" inputmode="numberic" placeholder="#####" maxlength="5" minlength="5" size="5" autocomplete="postal-code" required="" />
-						<datalist id="cities-list">
-							<option value="Lake Isabella" />
-							<option value="Wofford Heights" />
-							<option value="Kernville" />
-							<option value="Weldon" />
-						</datalist>
-					</div>
-					<div class="input-group">
-						<label>
-							<div>Request</div>
-							<textarea name="request" id="request" class="input" placeholder="Please describe your needs" cols="54" rows="8" autocomplete="off" required=""></textarea>
-						</label>
-					</div>
-				</fieldset>
-				<div class="flex btns">
-					<button type="submit" class="btn btn-accept btn-wide">Submit</button>
-					<span class="spacer">&nbsp;</span>
-					<button type="reset" class="btn btn-reject btn-wide">Reset</button>
 				</div>
-			</form>
+			</not-supported>
 		</main>
 		<aside id="sidebar"></aside>
-		<footer id="footer"></footer>
+		<footer id="footer">
+			<div>
+				<span>&copy;</span>
+				<time is="current-year"></time>
+				<span>Kern River Valley Healthy Shopping Resource</span>
+			</div>
+			<a href="/#contact">Contact</a>
+		</footer>
+		<toast-message id="settings-pannel" backdrop="">
+			<div slot="content">
+				<details>
+					<summary>Theme</summary>
+					<theme-toggle></theme-toggle>
+				</details>
+				<details>
+					<summary><code>&lt;bacon-ipsum&gt;</code></summary>
+					<bacon-ipsum></bacon-ipsum>
+				</details>
+			</div>
+		</toast-message>
+		<button type="button" is="share-button" class="btn btn-primary round shadow fixed bottom right z-4" aria-label="Share Page" hidden="">
+			<svg class="current-color icon" viewBox="0 0 16 16" aria-hidden="true">
+				<path d="M5.969 7.969a2.969 2.969 0 1 1-5.938 0 2.969 2.969 0 1 1 5.938 0zm9.969 5a2.969 2.969 0 1 1-5.938 0 2.969 2.969 0 1 1 5.938 0zm0-10a2.969 2.969 0 1 1-5.938 0 2.969 2.969 0 1 1 5.938 0z" overflow="visible"/>
+			</svg>
+		</button>
 	</body>
 </html>

@@ -1,0 +1,36 @@
+#main:empty::before {
+	content: "";
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0,  0.7);
+	z-index: calc(var(--z-top) - 1);
+}
+
+#main:empty::after {
+	content: "";
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	z-index: var(--z-top);
+	background-image: url("/img/loading.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 30vmin;
+	animation: spin 800ms linear infinite;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(1turn);
+	}
+}
+
+:root.no-js not-supported {
+	display: none;
+}
