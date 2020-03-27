@@ -58,7 +58,7 @@ export default class Router {
 		params,
 		user,
 		router,
-	} = {}) {
+	} = Router.route) {
 		if (customElements.get(tag) === undefined) {
 			await customElements.whenDefined(tag);
 		}

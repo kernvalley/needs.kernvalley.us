@@ -1,9 +1,25 @@
-import { ENDPOINT } from './consts.js';
+import { ENDPOINT } from './consts.js'
 import EventTarget from './EventTarget.js';
+
+async function setData(user, data) {
+	user.token = data.token;
+	user.email = data.person.email;
+	user.name = data.person.name;
+
+	if (data.person.image && data.person.image.url) {
+		user.image = data.person.image.url;
+	}
+}
 
 export default class User extends EventTarget {
 	constructor() {
 		super();
+		this.addEventListener('login', async ({detail}) => {
+			new Notification('Welcome back', {
+				body: detail.person.name,
+				icon: detail.person.image.url,
+			});
+		});
 
 		if (this.loggedIn) {
 			// Login stuff
@@ -24,6 +40,38 @@ export default class User extends EventTarget {
 		});
 	}
 
+	get email() {
+		return this.get('email');
+	}
+
+	set email(val) {
+		this.set('email', val);
+	}
+
+	get identifier() {
+		return this.get('identifier');
+	}
+
+	set identifier(val) {
+		this.set('identifier', val);
+	}
+
+	get image() {
+		return this.get('image');
+	}
+
+	set image(val) {
+		this.set('image', val);
+	}
+
+	get name() {
+		return this.get('name');
+	}
+
+	set name(val) {
+		this.set('name', val);
+	}
+
 	get token() {
 		return this.get('token');
 	}
@@ -33,29 +81,15 @@ export default class User extends EventTarget {
 	}
 
 	async register({
-		email,
 		password,
-		name,
-		telephone,
-		streetAddress,
-		addressLocality,
-		addressRegion,
-		postalCode,
+		person = {},
 	}) {
-		const resp = await fetch(new URL('/test/', ENDPOINT), {
+		const resp = await fetch(new URL('/user/', ENDPOINT), {
 			method: 'POST',
 			mode: 'cors',
 			body: JSON.stringify({
-				email,
 				password,
-				name,
-				telephone,
-				address: {
-					streetAddress,
-					addressLocality,
-					addressRegion,
-					postalCode,
-				},
+				person,
 			}),
 			headers: new Headers({
 				Accept: 'application/json',
@@ -65,14 +99,35 @@ export default class User extends EventTarget {
 
 		if (resp.ok) {
 			const detail = await resp.json();
+			setData(this, detail);
 			this.dispatchEvent(new CustomEvent('login', {detail}));
-			this.token = 'dfgdfg';
 			return detail;
+		} else {
+			await customElements.whenDefined('toast-message');
+			const err = await resp.json();
+			console.error(err);
+			const Toast = customElements.get('toast-message');
+			const toast = new Toast();
+			const pre = document.createElement('pre');
+			const code = document.createElement('code');
+			code.textContent = JSON.stringify({
+				headers: Object.fromEntries(resp.headers.entries()),
+				error: err,
+			}, null, 4);
+			pre.slot = 'content';
+			pre.classList.add('overflow-auto', 'overflow-x-auto');
+			pre.append(code);
+			toast.append(pre);
+			toast.backdrop = true;
+			document.body.append(toast);
+			await toast.show();
+			await toast.closed;
+			toast.remove();
 		}
 	}
 
 	async logIn({email, password}) {
-		const resp = await fetch(new URL('/test/', ENDPOINT), {
+		const resp = await fetch(new URL('/user/', ENDPOINT), {
 			mode: 'cors',
 			method: 'POST',
 			body: JSON.stringify({
@@ -87,8 +142,9 @@ export default class User extends EventTarget {
 
 		if (resp.ok) {
 			const detail = await resp.json();
+			setData(this, detail);
 			this.dispatchEvent(new CustomEvent('login', {detail}));
-			this.token = 'dfgdfg';
+
 			return detail;
 		}
 	}

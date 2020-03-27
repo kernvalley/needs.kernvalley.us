@@ -14,7 +14,7 @@ customElements.define('login-form', class HTMLLoginForm extends HTMLCustomElemen
 				event.preventDefault();
 				const form = new FormData(event.target);
 				const data = await user.logIn({
-					username: form.get('username'),
+					email: form.get('email'),
 					password: form.get('password'),
 				});
 				const Toast = customElements.get('toast-message');

@@ -1,5 +1,5 @@
 import Router from './Router.js';
-export const ENDPOINT = 'https://api.kernvalley.us';
+export const ENDPOINT = location.hostname.endsWith('.netlify.live') ? 'http://localhost:8081' : 'https://b5774ac5-2d54-4d4a-953f-4d91327b9cf9.kernvalley.us';
 export const title = 'Kern River Valley Healthy Shopping Resouce';
 
 export const routes = {
@@ -35,10 +35,9 @@ export const routes = {
 	},
 	request: async ({args, user, router}) => {
 		const uuid = args.length > 0 ? args[0] : null;
-		console.info({uuid});
 		if (await user.loggedIn) {
 			if (uuid === null) {
-				router.getComponent('request-form', uuid).then(async el => {
+				router.getComponent('request-form').then(async el => {
 					document.title = `Request Form | ${title}`;
 					const main = document.getElementById('main');
 					[...main.children].forEach(el => el.remove());
@@ -46,7 +45,7 @@ export const routes = {
 					main.append(el);
 				});
 			} else {
-				router.getComponent('request-list', uuid).then(async el => {
+				router.getComponent('request-list').then(async el => {
 					document.title = `Request Test | ${title}`;
 					const main = document.getElementById('main');
 					[...main.children].forEach(el => el.remove());
