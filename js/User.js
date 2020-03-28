@@ -1,10 +1,13 @@
-import { ENDPOINT } from './consts.js'
+import { ENDPOINT } from './consts.js';
 import EventTarget from './EventTarget.js';
 
 async function setData(user, data) {
 	user.token = data.token;
+	user.identifier = data.identifier;
 	user.email = data.person.email;
 	user.name = data.person.name;
+	user.role = data.role;
+	user.set('person', JSON.stringify(data.person));
 
 	if (data.person.image && data.person.image.url) {
 		user.image = data.person.image.url;
@@ -28,6 +31,20 @@ export default class User extends EventTarget {
 
 	get loggedIn() {
 		return this.has('token');
+	}
+
+	get role() {
+		return this.get('role').then(role => {
+			if (typeof role === 'string') {
+				return JSON.parse(role);
+			} else {
+				return {};
+			}
+		});
+	}
+
+	set role(val) {
+		this.set('role', JSON.stringify(val));
 	}
 
 	get whenLoggedIn() {
@@ -78,6 +95,14 @@ export default class User extends EventTarget {
 
 	set token(val) {
 		this.set('token', val);
+	}
+
+	get person() {
+		return this.get('person').then(person => {
+			if (typeof person === 'string') {
+				return JSON.parse(person);
+			}
+		});
 	}
 
 	async register({
@@ -163,6 +188,11 @@ export default class User extends EventTarget {
 
 	async delete(...props) {
 		props.forEach(prop => localStorage.removeItem(prop));
+	}
+
+	async can(...perms) {
+		const {permissions = {}} = await this.role;
+		return permissions !== undefined && perms.every(perm => permissions[perm] === true);
 	}
 
 	async logOut() {

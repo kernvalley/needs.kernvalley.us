@@ -1,6 +1,8 @@
 import Router from './Router.js';
-export const ENDPOINT = location.hostname.endsWith('.netlify.live') ? 'http://localhost:8081' : 'https://b5774ac5-2d54-4d4a-953f-4d91327b9cf9.kernvalley.us';
+import { alert } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
 export const title = 'Kern River Valley Healthy Shopping Resouce';
+export const ENDPOINT = location.hostname.endsWith('.netlify.live') ? 'http://localhost:8081'
+	: 'https://b5774ac5-2d54-4d4a-953f-4d91327b9cf9.kernvalley.us';
 
 export const routes = {
 	login: async ({router, user}) => {
@@ -33,20 +35,23 @@ export const routes = {
 			Router.go('');
 		}
 	},
-	request: async ({args, user, router}) => {
-		const uuid = args.length > 0 ? args[0] : null;
-		if (await user.loggedIn) {
-			if (uuid === null) {
-				router.getComponent('request-form').then(async el => {
-					document.title = `Request Form | ${title}`;
-					const main = document.getElementById('main');
-					[...main.children].forEach(el => el.remove());
-					await el.ready;
-					main.append(el);
-				});
+	requests: async ({router, user, args}) => {
+		const [uuid = null] = args;
+		if (uuid === 'new') {
+			router.getComponent('request-form').then(async el => {
+				document.title = `Request Form | ${title}`;
+				const main = document.getElementById('main');
+				[...main.children].forEach(el => el.remove());
+				await el.ready;
+				main.append(el);
+			});
+		} else if (uuid === null) {
+			if (! await user.can('listNeed')) {
+				await alert('You do not have permssion to access that');
+				history.back();
 			} else {
 				router.getComponent('request-list').then(async el => {
-					document.title = `Request Test | ${title}`;
+					document.title = `Request Form | ${title}`;
 					const main = document.getElementById('main');
 					[...main.children].forEach(el => el.remove());
 					await el.ready;
@@ -54,18 +59,15 @@ export const routes = {
 				});
 			}
 		} else {
-			Router.go('login');
+			// @TODO check permission
+			router.getComponent('request-details', uuid).then(async el => {
+				document.title = `Request Details | ${title}`;
+				const main = document.getElementById('main');
+				[...main.children].forEach(el => el.remove());
+				await el.ready;
+				main.append(el);
+			});
 		}
-	},
-	requests: async ({router, user, args = []}) => {
-		console.info({user, args});
-		router.getComponent('request-list').then(async el => {
-			document.title = `Request Form | ${title}`;
-			const main = document.getElementById('main');
-			[...main.children].forEach(el => el.remove());
-			await el.ready;
-			main.append(el);
-		});
 	},
 	contact: async ({router}) => {
 		router.getComponent('contact-info').then(async el => {
@@ -85,4 +87,24 @@ export const routes = {
 			main.append(el);
 		});
 	},
+	volunteers: async ({router, args}) => {
+		const [uuid = null] = args;
+		if (typeof uuid === 'string') {
+			router.getComponent('volunteer-individual', uuid).then(async el => {
+				document.title = `Volunteers | ${title}`;
+				const main = document.getElementById('main');
+				[...main.children].forEach(el => el.remove());
+				await el.ready;
+				main.append(el);
+			});
+		} else {
+			router.getComponent('volunteer-all').then(async el => {
+				document.title = `Volunteers | ${title}`;
+				const main = document.getElementById('main');
+				[...main.children].forEach(el => el.remove());
+				await el.ready;
+				main.append(el);
+			});
+		}
+	}
 };

@@ -22,7 +22,7 @@ customElements.define('login-form', class HTMLLoginForm extends HTMLCustomElemen
 					Router.go('');
 				} else {
 					await alert('Error logging in. Check email & password.');
-					target.querySelector('[type="[password]"').focus();
+					target.querySelector('[type="password"]').focus();
 				}
 			});
 

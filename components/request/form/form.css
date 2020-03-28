@@ -1,0 +1,19 @@
+@import url("/css/index.css");
+
+.options.flex.row {
+	justify-content: space-evenly;
+	margin: 0.3em;
+}
+
+.option > input[type="radio"] + label[for] {
+	background-color: #C2C2C2;
+	padding: 0.2em;
+	border-radius: 2px;
+	color: #343434;
+	cursor: pointer;
+}
+
+.option > input[type="radio"]:checked + label[for] {
+	background-color: #5656E2;
+	color: #fafafa;
+}
