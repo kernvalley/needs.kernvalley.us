@@ -45,14 +45,10 @@ customElements.define('request-list', class HTMLRequestListElement extends HTMLC
 					};
 
 					const data = await resp.json();
-					if (data.hasOwnProperty('unassigned') && Array.isArray(data.unassigned)) {
-						const {assigned = [], unassigned = []} = data;
-						const items = [...assigned, ...unassigned].map(builder);
-						tmp.querySelector('.requests-container').append(...items);
-						this.shadowRoot.append(tmp);
-						this.dispatchEvent(new Event('ready'));
-
-					}
+					const items = data.map(builder);
+					tmp.querySelector('.requests-container').append(...items);
+					this.shadowRoot.append(tmp);
+					this.dispatchEvent(new Event('ready'));
 					// @ TODO Handle invalid data
 				}
 			}
