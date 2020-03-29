@@ -26,6 +26,37 @@ customElements.define('request-details', class HTMLRequestDetailsElement extends
 				const created = new Date(request.created);
 				img.classList.add('round');
 				request.tags.forEach(tag => $(`.tags [data-tag="${CSS.escape(tag)}"]`, temp).unhide());
+				$('#request-upload-btn', temp).change(async ({target}) => {
+					if (target.files.length === 1) {
+						const body = new FormData();
+						body.set('token', await Router.user.token);
+						body.set('uuid', request.identifier);
+						body.set('upload', target.files.item(0), target.files.item(0).name);
+
+						try {
+							const resp = await fetch(new URL('./needs/', ENDPOINT), {
+								method: 'POST',
+								mode: 'cors',
+								body,
+							});
+
+							if (resp.ok) {
+								await alert('Image updated');
+								target.value = null;
+							} else {
+								const err = await resp.json();
+								if ('error' in err) {
+									throw new Error(err.error.message);
+								} else {
+									throw new Error('Unknown error uploading');
+								}
+							}
+						} catch (err) {
+							console.error(err);
+							await alert(err.message);
+						}
+					}
+				});
 				$('[data-tags]', temp).data({tags: request.tags.join(' ')});
 				temp.querySelector('select[name="status"]').value = request.status;
 				$('select[name="status"]', temp).change(async event => {
