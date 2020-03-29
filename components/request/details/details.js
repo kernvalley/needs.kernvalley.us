@@ -15,6 +15,7 @@ customElements.define('request-details', class HTMLRequestDetailsElement extends
 				const url = new URL('./needs/', ENDPOINT);
 				url.searchParams.set('token', await Router.user.token);
 				url.searchParams.set('uuid', uuid);
+
 				const resp = await fetch(url, {
 					mode: 'cors',
 					header: new Headers({
@@ -24,8 +25,10 @@ customElements.define('request-details', class HTMLRequestDetailsElement extends
 				const request = await resp.json();
 				const img = new Image(32, 32);
 				const created = new Date(request.created);
+
 				img.classList.add('round');
 				request.tags.forEach(tag => $(`.tags [data-tag="${CSS.escape(tag)}"]`, temp).unhide());
+
 				$('#request-upload-btn', temp).change(async ({target}) => {
 					if (target.files.length === 1) {
 						const body = new FormData();
@@ -57,8 +60,11 @@ customElements.define('request-details', class HTMLRequestDetailsElement extends
 						}
 					}
 				});
+
 				$('[data-tags]', temp).data({tags: request.tags.join(' ')});
+
 				temp.querySelector('select[name="status"]').value = request.status;
+
 				$('select[name="status"]', temp).change(async event => {
 					const target = event.target;
 					const resp = await fetch(new URL('./needs/', ENDPOINT), {

@@ -20,7 +20,6 @@ customElements.define('volunteer-all', class HTMLIndividualVolunteerElement exte
 				if (resp.ok) {
 					const users = await resp.json();
 					const template = tmp.querySelector('#volunteer-template').content;
-					console.table(users);
 					const link = new URL(location.href);
 					const items = users.map(user => {
 						const item = template.cloneNode(true);
