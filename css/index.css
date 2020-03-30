@@ -6,8 +6,10 @@
 @import url("https://cdn.kernvalley.us/css/core-css/layout/index.css");
 @import url("https://cdn.kernvalley.us/css/core-css/class-rules.css");
 @import url("https://cdn.kernvalley.us/css/core-css/scrollbar.css");
+@import url("./header.css");
 @import url("./nav.css");
 @import url("./main.css");
+@import url("./sidebar.css");
 @import url("./footer.css");
 @import url("./error-message.css");
 
