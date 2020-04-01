@@ -56,3 +56,7 @@ button.btn[is="share-button"] {
 .input-group label > input:only-of-type {
 	width: 100%;
 }
+
+.inline-flex {
+	display: inline-flex;
+}

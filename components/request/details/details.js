@@ -84,6 +84,7 @@ customElements.define('request-details', class HTMLRequestDetailsElement extends
 						await alert('Error updating status');
 					}
 				});
+				console.info(request.user.address);
 				$('[data-request-id]', temp).data({requestId: request.identifier});
 				$('[data-field="title"]', temp).text(request.title);
 				$('[data-field="description"]', temp).text(request.description);

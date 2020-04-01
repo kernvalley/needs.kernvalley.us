@@ -37,7 +37,7 @@ if (('customElements' in window) && customElements.get('admin-request-form') ===
 									this.list.append(...opts);
 								}
 							});
-						}, 4000);
+						}, 600);
 					} else {
 						if (typeof debouncer === 'number') {
 							debouncer = null;
@@ -58,6 +58,7 @@ if (('customElements' in window) && customElements.get('admin-request-form') ===
 							'Content-Type': 'application/json',
 						}),
 						body: JSON.stringify({
+							user: form.get('user'),
 							title: form.get('title'),
 							tags: form.get('tags'),
 							description: form.get('description'),

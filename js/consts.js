@@ -38,22 +38,31 @@ export const routes = {
 	requests: async ({router, user, args}) => {
 		const [uuid = null] = args;
 		if (uuid === 'new') {
-			router.getComponent('request-form').then(async el => {
-				document.title = `Request Form | ${title}`;
-				const main = document.getElementById('main');
-				[...main.children].forEach(el => el.remove());
-				await el.ready;
-				main.append(el);
-			});
+			if (await router.user.can('createNeed')) {
+				router.getComponent('request-form').then(async el => {
+					document.title = `Request Form | ${title}`;
+					const main = document.getElementById('main');
+					[...main.children].forEach(el => el.remove());
+					await el.ready;
+					main.append(el);
+				});
+			} else {
+				await alert('You do not have permission for that');
+				router.go('');
+			}
 		} else if (uuid === 'admin') {
-			// @TODO Verify permissions
-			router.getComponent('admin-request-form').then(async el => {
-				document.title = `Admin Request Form | ${title}`;
-				const main = document.getElementById('main');
-				[...main.children].forEach(el => el.remove());
-				await el.ready;
-				main.append(el);
-			});
+			if (await router.user.can('adminCreateNeed')) {
+				router.getComponent('admin-request-form').then(async el => {
+					document.title = `Admin Request Form | ${title}`;
+					const main = document.getElementById('main');
+					[...main.children].forEach(el => el.remove());
+					await el.ready;
+					main.append(el);
+				});
+			} else {
+				await alert('You do not have permission for that');
+				router.go('requests', 'new');
+			}
 		} else if (uuid === null) {
 			if (! await user.can('listNeed')) {
 				await alert('You do not have permssion to access that');
@@ -109,13 +118,18 @@ export const routes = {
 	},
 	createPerson: async ({router, /*user*/}) => {
 		// @TODO Check user permissions
-		router.getComponent('person-new').then(async el => {
-			document.title = `Create Person | ${title}`;
-			const main = document.getElementById('main');
-			[...main.children].forEach(el => el.remove());
-			await el.ready;
-			main.append(el);
-		});
+		if (! await router.user.can('createPerson')) {
+			await alert('You do not have permissions for that');
+			await router.go('');
+		} else {
+			router.getComponent('person-new').then(async el => {
+				document.title = `Create Person | ${title}`;
+				const main = document.getElementById('main');
+				[...main.children].forEach(el => el.remove());
+				await el.ready;
+				main.append(el);
+			});
+		}
 	},
 	'': async ({router}) => {
 		router.getComponent('home-component').then(async el => {

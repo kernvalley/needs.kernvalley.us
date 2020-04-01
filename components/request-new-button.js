@@ -3,7 +3,7 @@ import Router from '../js/Router.js';
 customElements.define('request-new-button', class HTMLRequestNewButtonElement extends HTMLElement {
 	async connectedCallback() {
 		const user = Router.user;
-		this.hidden = ! await user.loggedIn;
+		this.hidden = ! await user.can('createNeed');
 
 		user.addEventListener('login', async () => {
 			this.hidden = ! await user.can('createNeed');
