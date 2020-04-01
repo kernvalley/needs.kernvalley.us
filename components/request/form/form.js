@@ -2,6 +2,7 @@ import HTMLCustomElement from '../../custom-element.js';
 import { ENDPOINT } from '../../../js/consts.js';
 import Router from '../../../js/Router.js';
 import { $ } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
+import { alert } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
 
 if (('customElements' in window) && customElements.get('request-form') === undefined) {
 	customElements.define('request-form', class HTMLRequestForm extends HTMLCustomElement {
@@ -12,7 +13,8 @@ if (('customElements' in window) && customElements.get('request-form') === undef
 			this.getTemplate('/components/request/form/form.html').then(async tmp => {
 				$('form', tmp).submit(async event => {
 					event.preventDefault();
-					const form = new FormData(event.target);
+					const target = event.target;
+					const form = new FormData(target);
 					const resp = await fetch(new URL('./needs/', ENDPOINT), {
 						method: 'POST',
 						mode: 'cors',
@@ -26,20 +28,17 @@ if (('customElements' in window) && customElements.get('request-form') === undef
 							token: await Router.user.token,
 						}),
 					});
-					const Toast = customElements.get('toast-message');
-					const toast = new Toast();
-					const pre = document.createElement('pre');
-					const code = document.createElement('code');
-					pre.slot = 'content';
-					code.textContent = JSON.stringify(await resp.json(), null, 4);
-					toast.backdrop = true;
-					pre.append(code);
-					toast.append(pre);
-					document.body.append(toast);
-					await toast.show();
-					await toast.closed;
-					toast.remove();
-					event.target.reset();
+
+					if (resp.ok) {
+						target.reset();
+					} else {
+						const err = await resp.json();
+						if (err.hasOwnProperty('error')) {
+							await alert(err.error.message);
+						} else {
+							await alert('An unknown error occured submitting your request');
+						}
+					}
 				});
 
 				this.shadowRoot.append(tmp);

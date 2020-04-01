@@ -45,6 +45,15 @@ export const routes = {
 				await el.ready;
 				main.append(el);
 			});
+		} else if (uuid === 'admin') {
+			// @TODO Verify permissions
+			router.getComponent('admin-request-form').then(async el => {
+				document.title = `Admin Request Form | ${title}`;
+				const main = document.getElementById('main');
+				[...main.children].forEach(el => el.remove());
+				await el.ready;
+				main.append(el);
+			});
 		} else if (uuid === null) {
 			if (! await user.can('listNeed')) {
 				await alert('You do not have permssion to access that');
@@ -78,15 +87,6 @@ export const routes = {
 			main.append(el);
 		});
 	},
-	'': async ({router}) => {
-		router.getComponent('home-component').then(async el => {
-			document.title = title;
-			const main = document.getElementById('main');
-			[...main.children].forEach(el => el.remove());
-			await el.ready;
-			main.append(el);
-		});
-	},
 	volunteers: async ({router, args}) => {
 		const [uuid = null] = args;
 		if (typeof uuid === 'string') {
@@ -106,5 +106,24 @@ export const routes = {
 				main.append(el);
 			});
 		}
-	}
+	},
+	createPerson: async ({router, /*user*/}) => {
+		// @TODO Check user permissions
+		router.getComponent('person-new').then(async el => {
+			document.title = `Create Person | ${title}`;
+			const main = document.getElementById('main');
+			[...main.children].forEach(el => el.remove());
+			await el.ready;
+			main.append(el);
+		});
+	},
+	'': async ({router}) => {
+		router.getComponent('home-component').then(async el => {
+			document.title = title;
+			const main = document.getElementById('main');
+			[...main.children].forEach(el => el.remove());
+			await el.ready;
+			main.append(el);
+		});
+	},
 };

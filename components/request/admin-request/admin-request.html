@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="uft-8" />
+		<link rel="stylesheet" href="/components/request/form/form.css" media="all" />
+	</head>
+	<body>
+		<form name="adminRequest" class="card shadow inline-block" autocomplete="off">
+			<fieldset class="no-border">
+				<legend hidden="">Request Form</legend>
+				<div class="input-group">
+					<label>
+						<span>For</span>
+						<input type="text" name="user" class="input" list="users-list" placeholder="First Last" required="" />
+					</label>
+					<datalist id="users-list"></datalist>
+					<a href="/#createPerson" class="btn btn-primary">Create</a>
+				</div>
+				<div class="input-group">
+					<label>
+						<span>Title</span>
+						<input type="text" name="title" class="input" minlength="5" maxlength="30" placeholder="Title for Request" autofocus="" required="" />
+					</label>
+				</div>
+				<br />
+				<div class="input-grup">
+					<div>Request Type</div>
+					<div class="flex row options">
+						<span class="option">
+							<input type="radio" name="tags" id="tag-shopping" value="shopping" hidden="" />
+							<label for="tag-shopping" role="button" title="Shopping" tabindex="0">
+								<svg class="current-color icon" height="16" width="16" viewBox="0 0 48 48" aria-hidden="true">
+									<path d="M14 36c-2.21 0-3.98 1.79-3.98 4s1.77 4 3.98 4 4-1.79 4-4-1.79-4-4-4zM2 4v4h4l7.19 15.17-2.7 4.9c-.31.58-.49 1.23-.49 1.93 0 2.21 1.79 4 4 4h24v-4H14.85c-.28 0-.5-.22-.5-.5 0-.09.02-.17.06-.24L16.2 26h14.9c1.5 0 2.81-.83 3.5-2.06l7.15-12.98c.16-.28.25-.61.25-.96 0-1.11-.9-2-2-2H10.43l-1.9-4H2zm32 32c-2.21 0-3.98 1.79-3.98 4s1.77 4 3.98 4 4-1.79 4-4-1.79-4-4-4z"/>
+								</svg>
+							</label>
+							<br />
+						</span>
+						<span class="option">
+							<input type="radio" name="tags" id="tag-pharmacy" value="pharmacy" hidden="" />
+							<label for="tag-pharmacy" role="button" title="Pharmacy" tabindex="0">
+								<svg class="current-color icon" width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
+									<path d="M0 0h48v48H0z" fill="none"/>
+									<path d="M42 10h-5.29L39 3.71 34.3 2l-2.91 8H6v4l4 12-4 12v4h36v-4l-4-12 4-12v-4zM32 28h-6v6h-4v-6h-6v-4h6v-6h4v6h6v4z"/>
+								</svg>
+							</label>
+						</span>
+						<span class="option">
+							<input type="radio" name="tags" id="tag-medical" value="medical" hidden="" />
+							<label for="tag-medical" role="button" title="Medical" tabindex="0">
+								<svg class="current-color icon" width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
+									<path d="M38 6H10c-2.21 0-3.98 1.79-3.98 4L6 38c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4zm-2 22h-8v8h-8v-8h-8v-8h8v-8h8v8h8v8z"/>
+								</svg>
+							</label>
+						</span>
+						<span class="option">
+							<input type="radio" name="tags" id="tag-dining" value="dining" hidden="" />
+							<label for="tag-dining" role="button" title="Dining" tabindex="0">
+								<svg class="current-color icon" width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
+									<path d="M22 18h-4V4h-4v14h-4V4H6v14c0 4.25 3.32 7.69 7.5 7.95V44h5V25.95c4.18-.26 7.5-3.7 7.5-7.95V4h-4v14zm10-6v16h5v16h5V4c-5.52 0-10 4.48-10 8z"/>
+								</svg>
+							</label>
+						</span>
+						<span class="option">
+							<input type="radio" name="tags" id="tag-bank" value="bank" hidden="" />
+							<label for="tag-bank" role="button" title="Bank" tabindex="0">
+								<svg class="current-color icon" width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
+									<path d="M22 34h4v-2h2c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2h-6v-2h8v-4h-4v-2h-4v2h-2c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6v2h-8v4h4v2zM40 8H8c-2.21 0-3.98 1.79-3.98 4L4 36c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 28H8V12h32v24z"/>
+								</svg>
+							</label>
+						</span>
+						<span class="option">
+							<input type="radio" name="tags" id="tag-transportation" value="transportation" hidden="" />
+							<label for="tag-transportation" role="button" title="Transportation" tabindex="0">
+								<svg class="current-color icon" width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
+									<path d="M0 0h48v48H0z" fill="none"/>
+									<path d="M37.84 12.02C37.43 10.84 36.31 10 35 10h-5V6H18v4h-5c-1.31 0-2.43.84-2.84 2.02L6 24v16c0 1.1.9 2 2 2h2c1.11 0 2-.9 2-2v-2h24v2c0 1.1.9 2 2 2h2c1.11 0 2-.9 2-2V24l-4.16-11.98zM13 32c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm22 0c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zM10 22l3-9h22l3 9H10z"/>
+								</svg>
+							</label>
+						</span>
+						<span class="option">
+							<input type="radio" name="tags" id="tag-other" value="other" checked="" hidden="" />
+							<label for="tag-other" role="button" title="Other" tabindex="0">
+								<svg class="current-color icon" width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
+									<path d="M0 0h48v48H0z" fill="none"/>
+									<path d="M42.82 23.16L24.83 5.17C24.1 4.45 23.1 4 22 4H8C5.79 4 4 5.79 4 8v14c0 1.11.45 2.11 1.18 2.83l18 18C23.9 43.55 24.9 44 26 44c1.1 0 2.11-.45 2.83-1.17l14-14C43.55 28.1 44 27.1 44 26c0-1.11-.45-2.11-1.18-2.84zM11 14c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+								</svg>
+							</label>
+						</span>
+					</div>
+				</div>
+				<div class="input-group">
+					<label>
+						<div>
+							<svg class="current-color icon" width="14" height="16" viewBox="0 0 14 16">
+								<path fill-rule="evenodd" d="M3 10h4V9H3v1zm0-2h6V7H3v1zm0-2h8V5H3v1zm10 6H1V3h12v9zM1 2c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1H1z"/>
+							</svg>
+							<span>Request</span>
+						</div>
+						<textarea name="description" id="description" class="input" placeholder="Please describe your needs" cols="54" rows="8" autocomplete="off" required=""></textarea>
+					</label>
+				</div>
+			</fieldset>
+			<div class="flex btns">
+				<button type="submit" class="btn btn-accept btn-wide">
+					<svg class="current-color icon" height="12" width="16" viewBox="0 0 12 16">
+						<path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"/>
+					</svg>
+					<span>Submit</span>
+				</button>
+				<span class="spacer">&nbsp;</span>
+				<button type="reset" class="btn btn-reject btn-wide">
+					<svg class="current-color icon" height="16" width="12" viewBox="0 0 12 16">
+						<path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/>
+					</svg>
+					<span>Reset</span>
+				</button>
+			</div>
+		</form>
+	</body>
+</html>
