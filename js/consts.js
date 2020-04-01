@@ -1,6 +1,8 @@
 import Router from './Router.js';
-export const ENDPOINT = 'https://api.kernvalley.us';
+import { alert } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
 export const title = 'Kern River Valley Healthy Shopping Resouce';
+export const ENDPOINT = location.hostname.endsWith('.netlify.live') ? 'http://localhost:8081'
+	: 'https://b5774ac5-2d54-4d4a-953f-4d91327b9cf9.kernvalley.us';
 
 export const routes = {
 	login: async ({router, user}) => {
@@ -33,12 +35,11 @@ export const routes = {
 			Router.go('');
 		}
 	},
-	request: async ({args, user, router}) => {
-		const uuid = args.length > 0 ? args[0] : null;
-		console.info({uuid});
-		if (await user.loggedIn) {
-			if (uuid === null) {
-				router.getComponent('request-form', uuid).then(async el => {
+	requests: async ({router, user, args}) => {
+		const [uuid = null] = args;
+		if (uuid === 'new') {
+			if (await router.user.can('createNeed')) {
+				router.getComponent('request-form').then(async el => {
 					document.title = `Request Form | ${title}`;
 					const main = document.getElementById('main');
 					[...main.children].forEach(el => el.remove());
@@ -46,8 +47,29 @@ export const routes = {
 					main.append(el);
 				});
 			} else {
-				router.getComponent('request-list', uuid).then(async el => {
-					document.title = `Request Test | ${title}`;
+				await alert('You do not have permission for that');
+				router.go('');
+			}
+		} else if (uuid === 'admin') {
+			if (await router.user.can('adminCreateNeed')) {
+				router.getComponent('admin-request-form').then(async el => {
+					document.title = `Admin Request Form | ${title}`;
+					const main = document.getElementById('main');
+					[...main.children].forEach(el => el.remove());
+					await el.ready;
+					main.append(el);
+				});
+			} else {
+				await alert('You do not have permission for that');
+				router.go('requests', 'new');
+			}
+		} else if (uuid === null) {
+			if (! await user.can('listNeed')) {
+				await alert('You do not have permssion to access that');
+				history.back();
+			} else {
+				router.getComponent('request-list').then(async el => {
+					document.title = `Request Form | ${title}`;
 					const main = document.getElementById('main');
 					[...main.children].forEach(el => el.remove());
 					await el.ready;
@@ -55,18 +77,15 @@ export const routes = {
 				});
 			}
 		} else {
-			Router.go('login');
+			// @TODO check permission
+			router.getComponent('request-details', uuid).then(async el => {
+				document.title = `Request Details | ${title}`;
+				const main = document.getElementById('main');
+				[...main.children].forEach(el => el.remove());
+				await el.ready;
+				main.append(el);
+			});
 		}
-	},
-	requests: async ({router, user, args = []}) => {
-		console.info({user, args});
-		router.getComponent('request-list').then(async el => {
-			document.title = `Request Form | ${title}`;
-			const main = document.getElementById('main');
-			[...main.children].forEach(el => el.remove());
-			await el.ready;
-			main.append(el);
-		});
 	},
 	contact: async ({router}) => {
 		router.getComponent('contact-info').then(async el => {
@@ -76,6 +95,41 @@ export const routes = {
 			await el.ready;
 			main.append(el);
 		});
+	},
+	volunteers: async ({router, args}) => {
+		const [uuid = null] = args;
+		if (typeof uuid === 'string') {
+			router.getComponent('volunteer-individual', uuid).then(async el => {
+				document.title = `Volunteers | ${title}`;
+				const main = document.getElementById('main');
+				[...main.children].forEach(el => el.remove());
+				await el.ready;
+				main.append(el);
+			});
+		} else {
+			router.getComponent('volunteer-all').then(async el => {
+				document.title = `Volunteers | ${title}`;
+				const main = document.getElementById('main');
+				[...main.children].forEach(el => el.remove());
+				await el.ready;
+				main.append(el);
+			});
+		}
+	},
+	createPerson: async ({router, /*user*/}) => {
+		// @TODO Check user permissions
+		if (! await router.user.can('createPerson')) {
+			await alert('You do not have permissions for that');
+			await router.go('');
+		} else {
+			router.getComponent('person-new').then(async el => {
+				document.title = `Create Person | ${title}`;
+				const main = document.getElementById('main');
+				[...main.children].forEach(el => el.remove());
+				await el.ready;
+				main.append(el);
+			});
+		}
 	},
 	'': async ({router}) => {
 		router.getComponent('home-component').then(async el => {

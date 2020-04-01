@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<link rel="stylesheet" href="/components/request/details/details.css" media="all" />
+	</head>
+	<body>
+		<div class="card request shadow" data-request-id="" data-tags="">
+			<h3 class="clearfix">
+				<span data-field="title"></span>
+				<span class="spacer">&nbsp;</span>
+				<span class="input-group">
+					<label>
+						<span>Status:</span>
+						<select name="status" class="input">
+							<option value="open">Open</option>
+							<option value="closed">Closed</option>
+						</select>
+					</label>
+				</span>
+				<span class="tags float-right">
+					<span data-tag="medical" title="Medical" aria-label="Medical" hidden="">
+						<svg class="current-color icon" width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
+							<path d="M38 6H10c-2.21 0-3.98 1.79-3.98 4L6 38c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4zm-2 22h-8v8h-8v-8h-8v-8h8v-8h8v8h8v8z"/>
+						</svg>
+					</span>
+					<span data-tag="pharmacy" title="Pharmacy" aria-label="Pharmacy" hidden="">
+						<svg class="current-color icon" width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
+							<path d="M0 0h48v48H0z" fill="none"/>
+							<path d="M42 10h-5.29L39 3.71 34.3 2l-2.91 8H6v4l4 12-4 12v4h36v-4l-4-12 4-12v-4zM32 28h-6v6h-4v-6h-6v-4h6v-6h4v6h6v4z"/>
+						</svg>
+					</span>
+					<span data-tag="shopping" title="Shopping" aria-label="Shopping" hidden="">
+						<svg class="current-color icon" height="16" width="16" viewBox="0 0 48 48" aria-hidden="true">
+							<path d="M14 36c-2.21 0-3.98 1.79-3.98 4s1.77 4 3.98 4 4-1.79 4-4-1.79-4-4-4zM2 4v4h4l7.19 15.17-2.7 4.9c-.31.58-.49 1.23-.49 1.93 0 2.21 1.79 4 4 4h24v-4H14.85c-.28 0-.5-.22-.5-.5 0-.09.02-.17.06-.24L16.2 26h14.9c1.5 0 2.81-.83 3.5-2.06l7.15-12.98c.16-.28.25-.61.25-.96 0-1.11-.9-2-2-2H10.43l-1.9-4H2zm32 32c-2.21 0-3.98 1.79-3.98 4s1.77 4 3.98 4 4-1.79 4-4-1.79-4-4-4z"/>
+						</svg>
+					</span>
+					<span data-tag="dining" title="Dining" aria-label="Dining" hidden="">
+						<svg class="current-color icon" width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
+							<path d="M22 18h-4V4h-4v14h-4V4H6v14c0 4.25 3.32 7.69 7.5 7.95V44h5V25.95c4.18-.26 7.5-3.7 7.5-7.95V4h-4v14zm10-6v16h5v16h5V4c-5.52 0-10 4.48-10 8z"/>
+						</svg>
+					</span>
+					<span data-tag="bank" title="Bank" aria-label="Bank" hidden="">
+						<svg class="current-color icon" width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
+							<path d="M22 34h4v-2h2c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2h-6v-2h8v-4h-4v-2h-4v2h-2c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h6v2h-8v4h4v2zM40 8H8c-2.21 0-3.98 1.79-3.98 4L4 36c0 2.21 1.79 4 4 4h32c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 28H8V12h32v24z"/>
+						</svg>
+					</span>
+					<span data-tag="transportation" title="Transportation" aria-label="Transportation" hidden="true">
+						<svg class="current-color icon" width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
+							<path d="M0 0h48v48H0z" fill="none"/>
+							<path d="M37.84 12.02C37.43 10.84 36.31 10 35 10h-5V6H18v4h-5c-1.31 0-2.43.84-2.84 2.02L6 24v16c0 1.1.9 2 2 2h2c1.11 0 2-.9 2-2v-2h24v2c0 1.1.9 2 2 2h2c1.11 0 2-.9 2-2V24l-4.16-11.98zM13 32c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm22 0c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zM10 22l3-9h22l3 9H10z"/>
+						</svg>
+					</span>
+					<span data-tag="other" title="Other" aria-label="Other" hidden="">
+						<svg class="current-color icon" width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
+							<path d="M0 0h48v48H0z" fill="none"/>
+							<path d="M42.82 23.16L24.83 5.17C24.1 4.45 23.1 4 22 4H8C5.79 4 4 5.79 4 8v14c0 1.11.45 2.11 1.18 2.83l18 18C23.9 43.55 24.9 44 26 44c1.1 0 2.11-.45 2.83-1.17l14-14C43.55 28.1 44 27.1 44 26c0-1.11-.45-2.11-1.18-2.84zM11 14c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+						</svg>
+					</span>
+				</span>
+			</h3>
+			<div class="user-info inline-block center">
+				<img alt="Gravatar" decoding="async" loading="lazy" width="64" height="64" data-field="user-image" class="round" />
+				<br />
+				<span>
+					<svg class="current-color icon" width="16" height="16" version="1" viewBox="0 0 16 16">
+						<path d="M10.555 8.094C9.849 8.717 9.015 9 8 9c-1.016 0-1.853-.29-2.559-.914-1.109.363-2.436 1.288-2.437 2.902L3 14c0 .554.446 1 1 1h8c.554 0 1-.446 1-1v-3c0-1.387-1.102-2.556-2.445-2.906z"/>
+						<path d="M11 5a3 3 0 1 1-6 0 3 3 0 1 1 6 0z" overflow="visible"/>
+					</svg>
+					<span data-field="user"></span>
+				</span>
+			</div>
+			<br />
+			<div class="time">
+				<svg class="current-color icon" width="16" height="16" viewBox="0 0 48 48">
+					<path d="M34 24H24v10h10V24zM32 2v4H16V2h-4v4h-2c-2.21 0-3.98 1.79-3.98 4L6 38c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V10c0-2.21-1.79-4-4-4h-2V2h-4zm6 36H10V16h28v22z"/>
+				</svg>
+				<time data-field="created"></time>
+			</div>
+			<address class="area">
+				<div>
+					<svg class="current-color icon" width="16" height="16" viewBox="0 0 16 16">
+						<path d="M8 0a5 5 0 0 0-5 5c0 .173.014.332.031.5.014.167.036.336.063.5C3.666 9.514 6 12.003 8 14.003c2-2 4.334-4.489 4.906-8.003a6.38 6.38 0 0 0 .063-.5c.017-.168.03-.327.03-.5a5 5 0 0 0-5-5zm0 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" solid-color="#000000"/>
+					</svg>
+					<span data-field="streetAddress"></span>
+				</div>
+				<div>
+					<span data-field="addressLocality"></span>,
+					<span data-field="addressRegion"></span>
+					<span data-field="postalCode"></span>
+					<span data-field="addressCountry"></span>
+				</div>
+				<a href="" role="button" class="btn btn-primary" data-field="addr-url">
+					<svg class="current-color icon" height="16" width="16" viewBox="0 0 16 16">
+						<path d="M15 2v10l-5 3-5-3-5 3V5l5-3 5 3zM5 3v8l5 3V6z" />
+					</svg>
+					<span>Open in Maps</span>
+				</a>
+			</address>
+			<div class="contact-info">
+				<a class="btn btn-primary" href="" role="button" data-field="email-link">
+					<svg class="current-color icon" width="14" height="16" viewBox="0 0 14 16">
+						<path fill-rule="evenodd" d="M0 4v8c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H1c-.55 0-1 .45-1 1zm13 0L7 9 1 4h12zM1 5.5l4 3-4 3v-6zM2 12l3.5-3L7 10.5 8.5 9l3.5 3H2zm11-.5l-4-3 4-3v6z"/>
+					</svg>
+					<span data-field="email-addr"></span>
+				</a>
+				<br /><br />
+				<a class="btn btn-primary" href="" role="button" data-field="tel-link">
+					<svg class="current-color icon" width="16" height="16" version="1" viewBox="0 0 16 16">
+						<path d="M13.032 1c.534 0 .969.427.969.969v.062c-.017 6.613-5.383 11.97-12 11.97H1.97c-.545 0-.97-.447-.97-1v-3c0-.555.447-1 1-1h2c.555 0 1 .445 1 1v.468A8.967 8.967 0 0 0 10.47 5H10c-.553 0-1-.446-1-1V2c0-.554.447-1 1-1h3.032z"/>
+					</svg>
+					<span data-field="tel-num"></span>
+				</a>
+			</div>
+			<div class="description-field clearfix">
+				<svg class="current-color icon float-left" width="14" height="16" viewBox="0 0 14 16">
+					<path fill-rule="evenodd" d="M3 10h4V9H3v1zm0-2h6V7H3v1zm0-2h8V5H3v1zm10 6H1V3h12v9zM1 2c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1H1z"/>
+				</svg>
+				<p data-field="description"></p>
+			</div>
+			<form name="upload" class="input-group">
+				<label class="btn btn-primary btn-wide">
+					<span>Upload</span>
+					<input type="file" name="upload" accept="image/jpeg" id="request-upload-btn" class="input" />
+				</label>
+			</form>
+			<button data-field="claim" class="btn btn-primary btn-wide block">
+				<span>Claim Request</span>
+			</button>
+		</div>
+	</body>
+</html>

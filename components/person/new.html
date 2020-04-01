@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="/css/index.css" media="all" />
+	</head>
+	<body>
+		<form name="createPerson">
+			<fieldset autocomplete="off">
+				<legend>Create New Person</legend>
+				<div class="input-group">
+					<label>
+						<span>Name</span>
+					</label>
+					<br />
+					<input type="text" name="name" class="input" placeholder="First Last" required="" />
+				</div>
+				<div class="input-group">
+					<label>
+						<span>Address</span>
+					</label>
+					<br />
+					<input type="text" name="streetAddress" class="input" placeholder="123 Some St." required="" />
+					<br />
+					<input type="text" name="addressLocality" class="input" placeholder="City" required="" />
+					<input type="hidden" name="addressRegion" placeholder="State" value="CA" />
+					<input type="number" name="postalCode" class="input" min="10000" max="99999" size="5" required="" />
+					<input type="hidden" name="addressCountry" value="US" />
+				</div>
+				<div class="input-group">
+					<label>
+						<span>Email</span>
+					</label>
+					<br />
+					<input type="email" name="email" class="input" placeholder="user@example.com" />
+				</div>
+				<div class="input-group">
+					<label>
+						<span>Phone</span>
+					</label>
+					<br />
+					<input type="tel" name="telephone" class="input" placeholder="1-555-555-5555" />
+				</div>
+			</fieldset>
+			<div class="flex btns">
+				<button type="submit" class="btn btn-accept btn-wide">Submit</button>
+				<button type="reset" class="btn btn-reject btn-wide">Reset</button>
+			</div>
+		</form>
+	</body>
+</html>

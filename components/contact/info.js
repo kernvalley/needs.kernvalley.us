@@ -1,5 +1,6 @@
 import HTMLCustomElement from '../custom-element.js';
-
+import { ENDPOINT } from '../../js/consts.js';
+import { alert } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
 customElements.define('contact-info', class HTMLRequestForm extends HTMLCustomElement {
 	constructor() {
 		super();
@@ -10,20 +11,22 @@ customElements.define('contact-info', class HTMLRequestForm extends HTMLCustomEl
 				const target = event.target;
 				event.preventDefault();
 				const form = new FormData(event.target);
-				const Toast = customElements.get('toast-message');
-				const toast = new Toast();
-				const pre = document.createElement('pre');
-				const code = document.createElement('code');
-				pre.slot = 'content';
-				code.textContent = JSON.stringify(Object.fromEntries(form.entries()), null, 4);
-				toast.backdrop = true;
-				pre.append(code);
-				toast.append(pre);
-				document.body.append(toast);
-				await toast.show();
-				await toast.closed;
-				toast.remove();
-				target.reset();
+				const resp = await fetch(new URL('./contact', ENDPOINT), {
+					method: 'POST',
+					mode: 'cors',
+					body: JSON.stringify(Object.fromEntries(form.entries())),
+					headers: new Headers({
+						Accept: 'application/json',
+						'Content-Type': 'application/json',
+					})
+				});
+
+				if (resp.ok) {
+					await alert('Message Sent');
+					target.reset();
+				} else {
+					await alert('Error sending message. Please try another means.');
+				}
 			});
 
 			this.shadowRoot.append(tmp);

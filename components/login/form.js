@@ -1,7 +1,7 @@
 import HTMLCustomElement from '../custom-element.js';
 import Router from '../../js/Router.js';
 import { $ } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
-
+import { alert } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
 customElements.define('login-form', class HTMLLoginForm extends HTMLCustomElement {
 	constructor() {
 		super();
@@ -13,25 +13,17 @@ customElements.define('login-form', class HTMLLoginForm extends HTMLCustomElemen
 				const target = event.target;
 				event.preventDefault();
 				const form = new FormData(event.target);
-				const data = await user.logIn({
-					username: form.get('username'),
+
+				if (await user.logIn({
+					email: form.get('email'),
 					password: form.get('password'),
-				});
-				const Toast = customElements.get('toast-message');
-				const toast = new Toast();
-				const pre = document.createElement('pre');
-				const code = document.createElement('code');
-				pre.slot = 'content';
-				code.textContent = JSON.stringify(data, null, 4);
-				toast.backdrop = true;
-				pre.append(code);
-				toast.append(pre);
-				document.body.append(toast);
-				await toast.show();
-				await toast.closed;
-				toast.remove();
-				target.reset();
-				Router.go('');
+				})) {
+					target.reset();
+					Router.go('');
+				} else {
+					await alert('Error logging in. Check email & password.');
+					target.querySelector('[type="password"]').focus();
+				}
 			});
 
 			this.shadowRoot.append(tmp);

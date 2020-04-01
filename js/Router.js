@@ -12,8 +12,8 @@ function handler({
 	search,
 	params,
 	user,
-	router = Router,
-} = Router.route) {
+	router,
+}) {
 	if (routes.hasOwnProperty(route)) {
 		routes[route]({
 			href,
@@ -45,37 +45,14 @@ function handler({
 	}
 }
 
-window.getRoutes = () => routes;
 export default class Router {
-	static async getComponent(tag, {
-		href,
-		origin,
-		pathname,
-		hash,
-		route,
-		args,
-		search,
-		params,
-		user,
-		router,
-	} = {}) {
+	static async getComponent(tag, ...args) {
 		if (customElements.get(tag) === undefined) {
 			await customElements.whenDefined(tag);
 		}
 
 		const El = customElements.get(tag);
-		const el = new El({
-			href,
-			origin,
-			pathname,
-			hash,
-			route,
-			args,
-			search,
-			params,
-			user,
-			router,
-		});
+		const el = new El(...args);
 		return el;
 	}
 
@@ -87,7 +64,7 @@ export default class Router {
 		}
 	}
 
-	static get route() {
+	static get request() {
 		const {pathname, hash, search, origin, href} = location;
 		const [route = '', ...args] = hash.substr(1).split('/').filter(part => part !== '');
 		const params = Object.fromEntries(new URLSearchParams(search).entries());
@@ -123,7 +100,9 @@ export default class Router {
 	}
 
 	static init() {
-		handler(Router.route);
-		window.addEventListener('hashchange', () => handler(Router.route));
+		handler(Router.request);
+		window.addEventListener('hashchange', () => handler(Router.request));
 	}
 }
+
+window.Router = Router;

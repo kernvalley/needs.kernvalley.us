@@ -5,6 +5,15 @@
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content="Needs &amp; Volunteers site for the Kern River Valley" />
 		<meta name="keywords" content="" />
+		<meta name="msapplication-TileColor" content="#00aba9" />
+		<meta name="theme-color" content="#ffd6d0" />
+		<link rel="icon" type="image/svg+xml" sizes="any" href="/img/favicon.svg" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/img/icon-32.png" />
+		<link rel="icon" type="image/png" sizes="192x192" href="/img/icon-192.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/img/icon-16.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#7ad7d2" />
 		<title>Kern River Valley Healthy Shopping Resource</title>
 		<script src="https://polyfill.io/v3/polyfill.min.js?features=AbortController%2CArray.from%2CArray.isArray%2CArray.prototype.every%2CArray.prototype.fill%2CArray.prototype.find%2CArray.prototype.includes%2CArray.prototype.some%2CCustomEvent%2CDOMTokenList%2CDate.prototype.toISOString%2CDocumentFragment%2CDocumentFragment.prototype.append%2CDocumentFragment.prototype.prepend%2CElement.prototype.append%2CElement.prototype.classList%2CElement.prototype.cloneNode%2CElement.prototype.closest%2CElement.prototype.dataset%2CElement.prototype.matches%2CElement.prototype.prepend%2CElement.prototype.remove%2CElement.prototype.replaceWith%2CElement.prototype.scrollIntoView%2CElement.prototype.toggleAttribute%2CHTMLTemplateElement%2CMutationObserver%2CNavigator.prototype.geolocation%2CObject.fromEntries%2CObject.keys%2CPageVisibility%2CPromise%2CSet%2CURL%2CURLSearchParams%2CWeakSet%2CWeakMap%2CWebAnimations%2Cdocument.visibilityState%2Cdom4%2Chtml5shiv%2CmatchMedia%2Cnavigator.geolocation%2Cnavigator.sendBeacon%2CscrollIntoView"></script>
 		<script type="module" src="/js/index.js" async=""></script>
@@ -12,55 +21,94 @@
 		<link rel="stylesheet" href="/css/index.css" media="all" />
 	</head>
 	<body class="background-primary color-default font-main border-box smooth-scroll grid overflow-x-hidden">
-		<header id="header"></header>
+		<header id="header" class="center">
+			<h1>Kern River Valley Healthy Shopping Resource</h1>
+			<img src="img/favicon.svg" height="128" width="128" alt="Logo" decoding="async" />
+		</header>
 		<nav id="nav" class="sticky top shadow z-4 background-accent color-alt flex row nowrap">
 			<a href="/#" role="button" class="inline-block center">
 				<svg class="current-color icon" height="16" width="16" viewBox="0 0 16 16">
 					<path fill-rule="evenodd" d="M16 9l-3-3V2h-2v2L8 1 0 9h2l1 5c0 .55.45 1 1 1h8c.55 0 1-.45 1-1l1-5h2zm-4 5H9v-4H7v4H4L2.81 7.69 8 2.5l5.19 5.19L12 14z"/>
 				</svg>
 				<br />
-				<span>Home</span>
+				<span class="mobile-hidden">Home</span>
 			</a>
-			<login-button role="button" tabindex="0" class="inline-block center" hidden="">
-				<svg class="current-color icon" height="16" width="16" viewBox="0 0 14 16">
-					<path fill-rule="evenodd" d="M7 6.75V12h4V8h1v4c0 .55-.45 1-1 1H7v3l-5.45-2.72c-.33-.17-.55-.52-.55-.91V1c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v3h-1V1H3l4 2v2.25L10 3v2h4v2h-4v2L7 6.75z"/>
+			<request-new-button role="button" tabindex="0" class="inline-block center cursor-pointer" hidden="">
+				<svg class="current-color icon" width="16" height="16" version="1" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M2.94 1a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h4a1 1 0 1 0 0-2h-3V3h5.586l2.414 2.414V8a1 1 0 1 0 2 0V5a1 1 0 0 0-.293-.707l-3-3A1 1 0 0 0 9.94 1z" solid-color="#000000"/>
+					<path d="M10.94 10v1.997h-2v1.996h2v1.997h2v-1.997h2v-1.996h-2V10z"/>
 				</svg>
 				<br />
-				<span>Login</span>
-			</login-button>
-			<register-button role="button" tabindex="0" class="inline-block center" hidden="">
-				<svg class="current-color icon" height="16" width="16" viewBox="0 0 16 16">
+				<span class="mobile-hidden">New Request</span>
+			</request-new-button>
+			<request-list-button role="button" tabindex="0" class="inline-block center cursor-pointer" hidden="">
+				<svg class="current-color icon" width="16" height="16" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M15.41 9H7.59C7 9 7 8.59 7 8c0-.59 0-1 .59-1h7.81c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM9.59 4C9 4 9 3.59 9 3c0-.59 0-1 .59-1h5.81c.59 0 .59.41.59 1 0 .59 0 1-.59 1H9.59zM0 3.91l1.41-1.3L3 4.2 7.09 0 8.5 1.41 3 6.91l-3-3zM7.59 12h7.81c.59 0 .59.41.59 1 0 .59 0 1-.59 1H7.59C7 14 7 13.59 7 13c0-.59 0-1 .59-1z"/>
+				</svg>
+				<br />
+				<span class="mobile-hidden">List Request</span>
+			</request-list-button>
+			<create-person-button role="button" tabindex="0" class="inline-block center" hidden="">
+				<svg class="current-color icon" width="16" height="16" viewBox="0 0 16 16">
 					<g transform="translate(-261 -727)">
 						<path d="M269.55 735.09c-.705.624-1.54.906-2.555.906s-1.853-.29-2.558-.914c-1.11.363-2.436 1.288-2.438 2.902l-.004 3.012c0 .554.446 1 1 1h8c.554 0 1-.446 1-1v-3c0-1.387-1.102-2.556-2.445-2.906z"/>
 						<circle cx="49.5" cy="342.5" r="2.5" transform="matrix(1.2 0 0 1.2 207.6 321)"/>
-					<path d="M273 728v1.997h-2v1.996h2v1.997h2v-1.997h2v-1.996h-2V728z"/>
+						<path d="M273 728v1.997h-2v1.996h2v1.997h2v-1.997h2v-1.996h-2V728z"/>
 					</g>
 				</svg>
 				<br />
-				<span>Register</span>
-			</register-button>
-			<a role="button" href="/#requests" class="inline-block center">
-				<svg class="current-color icon" height="16" width="14" viewBox="0 0 14 16">
-					<path fill-rule="evenodd" d="M13 4h-1.38c.19-.33.33-.67.36-.91.06-.67-.11-1.22-.52-1.61C11.1 1.1 10.65 1 10.1 1h-.11c-.53.02-1.11.25-1.53.58-.42.33-.73.72-.97 1.2-.23-.48-.55-.88-.97-1.2-.42-.32-1-.58-1.53-.58h-.03c-.56 0-1.06.09-1.44.48-.41.39-.58.94-.52 1.61.03.23.17.58.36.91H1.98c-.55 0-1 .45-1 1v3h1v5c0 .55.45 1 1 1h9c.55 0 1-.45 1-1V8h1V5c0-.55-.45-1-1-1H13zm-4.78-.88c.17-.36.42-.67.75-.92.3-.23.72-.39 1.05-.41h.09c.45 0 .66.11.8.25s.33.39.3.95c-.05.19-.25.61-.5 1h-2.9l.41-.88v.01zM4.09 2.04c.13-.13.31-.25.91-.25.31 0 .72.17 1.03.41.33.25.58.55.75.92L7.2 4H4.3c-.25-.39-.45-.81-.5-1-.03-.56.16-.81.3-.95l-.01-.01zM7 12.99H3V8h4v5-.01zm0-6H2V5h5v2-.01zm5 6H8V8h4v5-.01zm1-6H8V5h5v2-.01z"/>
+				<span class="mobile-hidden">Create Person</span>
+			</create-person-button>
+			<admin-request-new-button role="button" tabindex="0" class="inline-block center" hidden="">
+				<svg class="current-color icon" width="16" height="16" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+					<path d="M0 0h48v48H0z" fill="none"/>
+					<path d="m24 4.0391c-0.64 0-1.2802 0.28156-1.6602 0.85156l-8.7598 13.109h-9.5801c-1.1 0-2 0.9-2 2 0 0.19 0.030312 0.36906 0.070312 0.53906l5.0703 18.541c0.47 1.68 2.0194 2.9199 3.8594 2.9199h26c1.84 0 3.3896-1.2397 3.8496-2.9297l5.0703-18.541c0.05-0.16 0.080078-0.3393 0.080078-0.5293 0-1.1-0.9-2-2-2h-9.5801l-8.7598-13.109c-0.38-0.58-1.0202-0.85156-1.6602-0.85156zm0 5.1602 6 8.8008h-12l6-8.8008zm-1 15.512h2v5h5v2h-5v5h-2v-5h-5v-2h5v-5z"/>
 				</svg>
 				<br />
-				<span>Request</span>
+				<span class="mobile-hidden">Create Request</span>
+			</admin-request-new-button>
+			<a role="button" href="/#volunteers" class="inline-block center">
+				<svg class="current-color icon" width="16" height="16" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M16 12.999c0 .439-.45 1-1 1H7.995c-.539 0-.994-.447-.995-.999H1c-.54 0-1-.561-1-1 0-2.634 3-4 3-4s.229-.409 0-1c-.841-.621-1.058-.59-1-3 .058-2.419 1.367-3 2.5-3s2.442.58 2.5 3c.058 2.41-.159 2.379-1 3-.229.59 0 1 0 1s1.549.711 2.42 2.088C9.196 9.369 10 8.999 10 8.999s.229-.409 0-1c-.841-.62-1.058-.59-1-3 .058-2.419 1.367-3 2.5-3s2.437.581 2.495 3c.059 2.41-.158 2.38-1 3-.229.59 0 1 0 1s3.005 1.366 3.005 4z"/>
+				</svg>
+				<br />
+				<span class="mobile-hidden">Volunteers</span>
 			</a>
 			<a role="button" href="/#contact" class="inline-block center">
 				<svg class="current-color icon" height="16" width="16" viewBox="0 0 16 16">
 					<path fill-rule="evenodd" d="M15 1H6c-.55 0-1 .45-1 1v2H1c-.55 0-1 .45-1 1v6c0 .55.45 1 1 1h1v3l3-3h4c.55 0 1-.45 1-1V9h1l3 3V9h1c.55 0 1-.45 1-1V2c0-.55-.45-1-1-1zM9 11H4.5L3 12.5V11H1V5h4v3c0 .55.45 1 1 1h3v2zm6-3h-2v1.5L11.5 8H6V2h9v6z"/>
 				</svg>
 				<br />
-				<span>Contact</span>
+				<span class="mobile-hidden">Contact</span>
 			</a>
-			<logout-button role="button" tabindex="0" class="inline-block center" hidden="">
-				<svg class="current-color icon" height="16" width="16" viewBox="0 0 16 16">
-					<path fill-rule="evenodd" d="M11.992 8.994V6.996H7.995v-2h3.997V2.999l3.998 2.998-3.998 2.998zm-1.998 2.998H5.996V2.998L2 1h7.995v2.998h1V1c0-.55-.45-.999-1-.999H.999A1.001 1.001 0 0 0 0 1v11.372c0 .39.22.73.55.91L5.996 16v-3.008h3.998c.55 0 1-.45 1-1V7.996h-1v3.998z"/>
-				</svg>
-				<br />
-				<span>Logout</span>
-			</logout-button>
-			<button type="button" class="center" data-action="settings">
+			<span class="inline-flex">
+				<login-button role="button" tabindex="0" class="inline-block center" hidden="">
+					<svg class="current-color icon" height="16" width="16" viewBox="0 0 14 16">
+						<path fill-rule="evenodd" d="M7 6.75V12h4V8h1v4c0 .55-.45 1-1 1H7v3l-5.45-2.72c-.33-.17-.55-.52-.55-.91V1c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v3h-1V1H3l4 2v2.25L10 3v2h4v2h-4v2L7 6.75z"/>
+					</svg>
+					<br />
+					<span class="mobile-hidden">Login</span>
+				</login-button>
+				<register-button role="button" tabindex="0" class="inline-block center" hidden="">
+					<svg class="current-color icon" height="16" width="16" viewBox="0 0 16 16">
+						<g transform="translate(-261 -727)">
+							<path d="M269.55 735.09c-.705.624-1.54.906-2.555.906s-1.853-.29-2.558-.914c-1.11.363-2.436 1.288-2.438 2.902l-.004 3.012c0 .554.446 1 1 1h8c.554 0 1-.446 1-1v-3c0-1.387-1.102-2.556-2.445-2.906z"/>
+							<circle cx="49.5" cy="342.5" r="2.5" transform="matrix(1.2 0 0 1.2 207.6 321)"/>
+						<path d="M273 728v1.997h-2v1.996h2v1.997h2v-1.997h2v-1.996h-2V728z"/>
+						</g>
+					</svg>
+					<br />
+					<span class="mobile-hidden">Register</span>
+				</register-button>
+				<logout-button role="button" tabindex="0" class="inline-block center" hidden="">
+					<svg class="current-color icon" height="16" width="16" viewBox="0 0 16 16">
+						<path fill-rule="evenodd" d="M11.992 8.994V6.996H7.995v-2h3.997V2.999l3.998 2.998-3.998 2.998zm-1.998 2.998H5.996V2.998L2 1h7.995v2.998h1V1c0-.55-.45-.999-1-.999H.999A1.001 1.001 0 0 0 0 1v11.372c0 .39.22.73.55.91L5.996 16v-3.008h3.998c.55 0 1-.45 1-1V7.996h-1v3.998z"/>
+					</svg>
+					<br />
+					<span class="mobile-hidden">Logout</span>
+				</logout-button>
+			</span>
+			<button type="button" class="center" data-action="settings" hidden="">
 				<svg class="current-color icon" width="14" height="16" viewBox="0 0 14 16">
 					<path fill-rule="evenodd" d="M14 8.77v-1.6l-1.94-.64-.45-1.09.88-1.84-1.13-1.13-1.81.91-1.09-.45-.69-1.92h-1.6l-.63 1.94-1.11.45-1.84-.88-1.13 1.13.91 1.81-.45 1.09L0 7.23v1.59l1.94.64.45 1.09-.88 1.84 1.13 1.13 1.81-.91 1.09.45.69 1.92h1.59l.63-1.94 1.11-.45 1.84.88 1.13-1.13-.92-1.81.47-1.09L14 8.75v.02zM7 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
 				</svg>
@@ -96,12 +144,27 @@
 		</main>
 		<aside id="sidebar"></aside>
 		<footer id="footer">
+			<hr />
+			<svg height="96" width="96" viewBox="0 0 50 50">
+				<path d="m24.535 22.951c-0.16666 0.0034-0.33221 0.02341-0.49454 0.06149-1.2986 0.30453-2.1135 1.334-2.8314 2.9755-0.66118 3.2654 3.6391 6.283 5.5661 7.8936 0.27159 0.22971 0.32952-0.08707 0.62063-0.29146 3.2449-2.9744 7.5812-5.5405 4.1724-9.5674-0.4991-0.57072-1.1162-0.9338-1.7678-0.971-0.65161-0.0372-1.2308 0.22326-1.742 0.57206-1.3691 0.95114-0.58859 0.83679-2.0469-0.27699-0.46593-0.26439-0.97642-0.40595-1.4764-0.39584z" fill="currentColor" fill-rule="evenodd"/>
+				<path d="m17.498 11.478c1.4048 10.339-0.79422 20.671-0.72641 30.77-2.4557-1.5042-4.3513-2.871-5.7463-5.6127 2.2814-7.5731 2.5935-16.241 2.7996-24.858zm-0.72641 30.77c7.6115 0.33479 14.948-0.0173 22.206-0.56696-1.3855-7.8435-2.1397-16.424-2.4568-25.513-7.4101-1.1093-13.241-2.9204-19.088-4.7247 0.24307 10.639-0.0139 20.878-0.66145 30.805z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2.165"/>
+				<path d="m11.148 36.438c2.0476-0.11057 3.5684-0.44069 5.0948-0.76841" fill="none" stroke="currentColor" stroke-width="1.165"/>
+				<path d="m23.048 7.148c-0.49324-0.10732-1.0461-0.0842-1.623 0.11914-1.154 0.40667-1.6226 0.86537-2.921 2.8713 0.26953 0.17448 0.53906 0.34895 0.80859 0.52343 1.2294-1.8992 1.5793-2.1838 2.4328-2.4846 0.8535-0.30079 1.6238 0.24033 2.0792 0.66362 0.16372-0.26908 0.32744-0.53817 0.49116-0.80725-0.34005-0.31614-0.77433-0.77835-1.2676-0.88567z" fill="currentColor" />
+				<path d="m27.568 6.788c-0.36565-0.0421-0.73224-4e-4 -1.0723 0.12304-1.3601 0.49379-2.3156 1.9483-3.1074 3.8457-0.79184 1.8974-1.3706 4.2996-1.6348 6.8496l1.3574 0.14062c0.25199-2.4321 0.81242-4.7283 1.5371-6.4648s1.6622-2.8511 2.3144-3.0879c0.32614-0.11841 0.57219-0.10753 0.94141 0.125 0.36922 0.23252 0.83238 0.74149 1.2988 1.6094 0.93289 1.7358 1.8704 4.8572 2.6094 9.6875l1.3496-0.20508c-0.75143-4.9117-1.6851-8.1366-2.7559-10.129-0.53537-0.99614-1.1071-1.6976-1.7734-2.1172-0.33315-0.20982-0.6988-0.33483-1.0644-0.37695z" fill="currentColor" />
+				<path d="m22.878 16.498a1.1664 1.1585 0 0 1 0.72864 1.297 1.1664 1.1585 0 0 1-1.1551 0.9432 1.1664 1.1585 0 0 1-1.1404-0.96079 1.1664 1.1585 0 0 1 0.7487-1.2856" fill-rule="evenodd" fill="currentColor" />
+				<path d="m32.588 18.438a1.1664 1.1585 0 0 1 0.72863 1.297 1.1664 1.1585 0 0 1-1.1551 0.9432 1.1664 1.1585 0 0 1-1.1404-0.96079 1.1664 1.1585 0 0 1 0.74869-1.2856" fill-rule="evenodd" fill="currentColor" />
+			</svg>
 			<div>
 				<span>&copy;</span>
 				<time is="current-year"></time>
 				<span>Kern River Valley Healthy Shopping Resource</span>
 			</div>
 			<a href="/#contact">Contact</a>
+			<p>
+				<span>Created by</span>
+				<span>Chris Zuber</span>,
+				<a href="https://kernvalley.us" rel="noopener external" class="link-color unuderline">KernValley.US</a>
+			</p>
 		</footer>
 		<toast-message id="settings-pannel" backdrop="">
 			<div slot="content">
@@ -116,8 +179,9 @@
 			</div>
 		</toast-message>
 		<button type="button" is="share-button" class="btn btn-primary round shadow fixed bottom right z-4" aria-label="Share Page" hidden="">
-			<svg class="current-color icon" viewBox="0 0 16 16" aria-hidden="true">
+			<svg class="current-color icon" width="16" height="16" version="1" viewBox="0 0 16 16">
 				<path d="M5.969 7.969a2.969 2.969 0 1 1-5.938 0 2.969 2.969 0 1 1 5.938 0zm9.969 5a2.969 2.969 0 1 1-5.938 0 2.969 2.969 0 1 1 5.938 0zm0-10a2.969 2.969 0 1 1-5.938 0 2.969 2.969 0 1 1 5.938 0z" overflow="visible"/>
+				<path d="M12.625 2.156L2.562 7.031.75 7.938l1.812.906 10.032 5.062.906-1.812-8.22-4.156 8.219-4-.875-1.782z" overflow="visible"/>
 			</svg>
 		</button>
 	</body>
