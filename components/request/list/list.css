@@ -1,1 +1,8 @@
 @import url("/css/index.css");
+
+.requests-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+	justify-content: space-evenly;
+	grid-gap: 1em;
+}
