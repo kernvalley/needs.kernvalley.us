@@ -14,6 +14,8 @@ import '../components/register-button.js';
 import '../components/registration/form.js';
 import '../components/login/form.js';
 import '../components/request/form/form.js';
+import '../components/request/itemized/items.js';
+import '../components/request/itemized/item.js';
 import '../components/create-person-button.js';
 import '../components/request/admin-request/admin-request.js';
 import '../components/request/list/list.js';

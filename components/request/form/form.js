@@ -25,6 +25,7 @@ if (('customElements' in window) && customElements.get('request-form') === undef
 							title: form.get('title'),
 							tags: form.get('tags'),
 							description: form.get('description'),
+							items: this.items,
 							token: await Router.user.token,
 						}),
 					});
@@ -44,6 +45,10 @@ if (('customElements' in window) && customElements.get('request-form') === undef
 				this.shadowRoot.append(tmp);
 				this.dispatchEvent(new Event('ready'));
 			});
+		}
+
+		get items() {
+			return this.shadowRoot.querySelector('form-items').items;
 		}
 	});
 }

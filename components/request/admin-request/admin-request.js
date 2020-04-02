@@ -2,6 +2,7 @@ import HTMLCustomElement from '../../custom-element.js';
 import { ENDPOINT } from '../../../js/consts.js';
 import Router from '../../../js/Router.js';
 import { $ } from 'https://cdn.kernvalley.us/js/std-js/functions.js';
+import { confirm, alert } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
 
 if (('customElements' in window) && customElements.get('admin-request-form') === undefined) {
 	customElements.define('admin-request-form', class HTMLAdminRequestForm extends HTMLCustomElement {
@@ -50,7 +51,8 @@ if (('customElements' in window) && customElements.get('admin-request-form') ===
 
 				$('form', tmp).submit(async event => {
 					event.preventDefault();
-					const form = new FormData(event.target);
+					const target = event.target;
+					const form = new FormData(target);
 					const resp = await fetch(new URL('./needs/', ENDPOINT), {
 						method: 'POST',
 						mode: 'cors',
@@ -62,28 +64,34 @@ if (('customElements' in window) && customElements.get('admin-request-form') ===
 							title: form.get('title'),
 							tags: form.get('tags'),
 							description: form.get('description'),
+							items: this.items,
 							token: await Router.user.token,
 						}),
 					});
-					const Toast = customElements.get('toast-message');
-					const toast = new Toast();
-					const pre = document.createElement('pre');
-					const code = document.createElement('code');
-					pre.slot = 'content';
-					code.textContent = JSON.stringify(await resp.json(), null, 4);
-					toast.backdrop = true;
-					pre.append(code);
-					toast.append(pre);
-					document.body.append(toast);
-					await toast.show();
-					await toast.closed;
-					toast.remove();
-					event.target.reset();
+
+					if (resp.ok) {
+						target.reset();
+
+						if (! await confirm('Request created. Create another?')) {
+							Router.go('requests');
+						}
+					} else {
+						const err = await resp.json();
+						if (err.hasOwnProperty('error')) {
+							await alert(err.error.message);
+						} else {
+							await alert('An unknown error occured');
+						}
+					}
 				});
 
 				this.shadowRoot.append(tmp);
 				this.dispatchEvent(new Event('ready'));
 			});
+		}
+
+		get items() {
+			return this.shadowRoot.querySelector('form-items').items;
 		}
 	});
 }

@@ -17,3 +17,15 @@
 	background-color: #5656E2;
 	color: #fafafa;
 }
+
+form-item {
+	display: block;
+	margin-bottom: 0.6em;
+}
+
+form-item input {
+	background: transparent;
+	color: inherit;
+	padding: 0.3em;
+	border-width: 0 0 1px 0;
+}
