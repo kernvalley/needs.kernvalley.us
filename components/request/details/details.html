@@ -118,6 +118,7 @@
 				</svg>
 				<p data-field="description"></p>
 			</div>
+			<ul data-field="list-items"></ul>
 			<form name="upload" class="input-group">
 				<label class="btn btn-primary btn-wide">
 					<span>Upload</span>
@@ -128,5 +129,12 @@
 				<span>Claim Request</span>
 			</button>
 		</div>
+		<template id="list-item-template">
+			<li class="list-item-container">
+				<b data-field="item-qty"></b>
+				<span>x</span>
+				<span class="underline" data-field="item-text"></span>
+			</li>
+		</template>
 	</body>
 </html>

@@ -13,6 +13,7 @@ customElements.define('request-details', class HTMLRequestDetailsElement extends
 			this.attachShadow({mode: 'open'});
 			this.getTemplate('/components/request/details/details.html').then(async temp => {
 				const url = new URL('./needs/', ENDPOINT);
+				const itemTemplate = temp.querySelector('#list-item-template').content;
 				url.searchParams.set('token', await Router.user.token);
 				url.searchParams.set('uuid', uuid);
 
@@ -25,6 +26,16 @@ customElements.define('request-details', class HTMLRequestDetailsElement extends
 				const request = await resp.json();
 				const img = new Image(32, 32);
 				const created = new Date(request.created);
+				if (Array.isArray(request.items)) {
+					const items = request.items.map(item => {
+						const tmp = itemTemplate.cloneNode(true);
+						$('[data-field="item-qty"]', tmp).text(item.quantity);
+						$('[data-field="item-text"]', tmp).text(item.item);
+						return tmp;
+					});
+					console.info(items);
+					temp.querySelector('[data-field="list-items"]').append(...items);
+				}
 
 				img.classList.add('round');
 				request.tags.forEach(tag => $(`.tags [data-tag="${CSS.escape(tag)}"]`, temp).unhide());
@@ -84,7 +95,6 @@ customElements.define('request-details', class HTMLRequestDetailsElement extends
 						await alert('Error updating status');
 					}
 				});
-				console.info(request.user.address);
 				$('[data-request-id]', temp).data({requestId: request.identifier});
 				$('[data-field="title"]', temp).text(request.title);
 				$('[data-field="description"]', temp).text(request.description);

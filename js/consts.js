@@ -1,8 +1,8 @@
 import Router from './Router.js';
 import { alert } from 'https://cdn.kernvalley.us/js/std-js/asyncDialog.js';
 export const title = 'Kern River Valley Healthy Shopping Resouce';
-export const ENDPOINT = location.hostname.endsWith('.netlify.live') ? 'http://localhost:8081'
-	: 'https://b5774ac5-2d54-4d4a-953f-4d91327b9cf9.kernvalley.us';
+export const DEBUG = location.hostname.endsWith('.netlify.live');
+export const ENDPOINT = DEBUG ? 'http://localhost:8081' : 'https://b5774ac5-2d54-4d4a-953f-4d91327b9cf9.kernvalley.us';
 
 export const routes = {
 	login: async ({router, user}) => {
