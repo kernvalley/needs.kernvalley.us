@@ -14,6 +14,7 @@ customElements.define('request-details', class HTMLRequestDetailsElement extends
 			this.getTemplate('/components/request/details/details.html').then(async temp => {
 				const url = new URL('./needs/', ENDPOINT);
 				const itemTemplate = temp.querySelector('#list-item-template').content;
+
 				url.searchParams.set('token', await Router.user.token);
 				url.searchParams.set('uuid', uuid);
 
@@ -23,6 +24,7 @@ customElements.define('request-details', class HTMLRequestDetailsElement extends
 						Accept: 'application/json',
 					}),
 				});
+
 				const request = await resp.json();
 				const img = new Image(32, 32);
 				const created = new Date(request.created);
@@ -95,6 +97,7 @@ customElements.define('request-details', class HTMLRequestDetailsElement extends
 						await alert('Error updating status');
 					}
 				});
+				this.identifier = request.identifier;
 				$('[data-request-id]', temp).data({requestId: request.identifier});
 				$('[data-field="title"]', temp).text(request.title);
 				$('[data-field="description"]', temp).text(request.description);
@@ -109,13 +112,28 @@ customElements.define('request-details', class HTMLRequestDetailsElement extends
 				$('[data-field="email-link"]', temp).attr({href: `mailto:${request.user.email}`});
 				$('[data-field="email-addr"]', temp).text(request.user.email);
 				$('[data-field="tel-link"]', temp).attr({href: `tel:${request.user.telephone}`});
-				$('[data-field="tel-num"]', temp).text(request.user.telephone);
+				$('[data-field="tel-num"]', temp).text(request.user.telephone.replace('+', ''));
 				$('[data-field="created"]', temp).text(created.toLocaleString());
 
 				if (typeof request.user.address.url === 'string') {
 					$('[data-field="addr-url"]', temp).attr({href: request.user.address.url});
 				} else {
 					$('[data-field="addr-url"]', temp).remove();
+				}
+
+				if (Array.isArray(request.attachments) && request.attachments.length !== 0) {
+					const attachmentTemplate = temp.querySelector('#attachment-template').content;
+					const attachments = request.attachments.map(file => {
+						const tmp = attachmentTemplate.cloneNode(true);
+						$('[data-field="attachment-url"]', tmp).attr({
+							href: file.url,
+							title: file.filename,
+							download: file.filename,
+						});
+						$('[data-field="attachment-filename"]', tmp).text(file.filename);
+						return tmp;
+					});
+					temp.querySelector('[data-field="attachments"]').append(...attachments);
 				}
 
 				if (request.assigned === null) {
@@ -147,5 +165,31 @@ customElements.define('request-details', class HTMLRequestDetailsElement extends
 				this.dispatchEvent(new Event('ready'));
 			});
 		}
+	}
+
+	async attributeChangedCallback(name) {
+		await this.ready;
+		switch(name) {
+		case 'identifier':
+			console.info(this.identifier);
+			break;
+
+		default:
+			throw new Error(`Unhandled attribute changed: ${name}`);
+		}
+	}
+
+	get identifier() {
+		return this.getAttribute('identifier');
+	}
+
+	set identifier(val) {
+		this.setAttribute('identifier', val);
+	}
+
+	static get observedAttributes() {
+		return [
+			'identifier',
+		];
 	}
 });

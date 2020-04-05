@@ -7,3 +7,11 @@ select.input {
 	border-color: currentColor;
 	padding: 0.4em 1.2em;
 }
+
+.items-container, .attachments-container {
+	list-style: none;
+}
+
+.attachment, .contact-link {
+	margin-bottom: 0.2em;
+}

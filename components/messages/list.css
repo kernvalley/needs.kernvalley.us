@@ -1,0 +1,31 @@
+@import url("/css/index.css");
+
+:host {
+	display: block;
+}
+
+.message-list {
+	list-style: none;
+}
+
+.message-item.message-read .mail-unread-icon {
+	display: none;
+}
+
+.message-item:not(.message-read) .mail-read-icon {
+	display: none;
+}
+
+.message-item {
+	padding: 0.8em 0.3em;
+	background-color: #343434;
+	color: #fafafa;
+	border-width: 0 0 1px 0;
+	border-style: solid;
+	margin-bottom: 0.4em;
+}
+
+.message-item.message-odd {
+	background-color: #9a9a9a;
+	color: #1c1515;
+}

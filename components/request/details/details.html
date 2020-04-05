@@ -60,7 +60,7 @@
 				</span>
 			</h3>
 			<div class="user-info inline-block center">
-				<img alt="Gravatar" decoding="async" loading="lazy" width="64" height="64" data-field="user-image" class="round" />
+				<img alt="Avatar" decoding="async" loading="lazy" width="64" height="64" data-field="user-image" class="round" />
 				<br />
 				<span>
 					<svg class="current-color icon" width="16" height="16" version="1" viewBox="0 0 16 16">
@@ -90,22 +90,22 @@
 					<span data-field="postalCode"></span>
 					<span data-field="addressCountry"></span>
 				</div>
-				<a href="" role="button" class="btn btn-primary" data-field="addr-url">
+				<a href="" role="button" class="btn btn-primary map-link contact-link" data-field="addr-url">
 					<svg class="current-color icon" height="16" width="16" viewBox="0 0 16 16">
 						<path d="M15 2v10l-5 3-5-3-5 3V5l5-3 5 3zM5 3v8l5 3V6z" />
 					</svg>
 					<span>Open in Maps</span>
 				</a>
 			</address>
+			<br />
 			<div class="contact-info">
-				<a class="btn btn-primary" href="" role="button" data-field="email-link">
+				<a class="btn btn-primary email-link contact-link" href="" role="button" data-field="email-link">
 					<svg class="current-color icon" width="14" height="16" viewBox="0 0 14 16">
 						<path fill-rule="evenodd" d="M0 4v8c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H1c-.55 0-1 .45-1 1zm13 0L7 9 1 4h12zM1 5.5l4 3-4 3v-6zM2 12l3.5-3L7 10.5 8.5 9l3.5 3H2zm11-.5l-4-3 4-3v6z"/>
 					</svg>
 					<span data-field="email-addr"></span>
 				</a>
-				<br /><br />
-				<a class="btn btn-primary" href="" role="button" data-field="tel-link">
+				<a class="btn btn-primary tel-link contact-link" href="" role="button" data-field="tel-link">
 					<svg class="current-color icon" width="16" height="16" version="1" viewBox="0 0 16 16">
 						<path d="M13.032 1c.534 0 .969.427.969.969v.062c-.017 6.613-5.383 11.97-12 11.97H1.97c-.545 0-.97-.447-.97-1v-3c0-.555.447-1 1-1h2c.555 0 1 .445 1 1v.468A8.967 8.967 0 0 0 10.47 5H10c-.553 0-1-.446-1-1V2c0-.554.447-1 1-1h3.032z"/>
 					</svg>
@@ -118,13 +118,25 @@
 				</svg>
 				<p data-field="description"></p>
 			</div>
-			<ul data-field="list-items"></ul>
-			<form name="upload" class="input-group">
-				<label class="btn btn-primary btn-wide">
-					<span>Upload</span>
-					<input type="file" name="upload" accept="image/jpeg" id="request-upload-btn" class="input" />
-				</label>
-			</form>
+			<div>
+				<h4>Requested Items</h4>
+				<ul data-field="list-items" class="items-container"></ul>
+			</div>
+			<hr />
+			<div>
+				<h4>Attachments</h4>
+				<ul data-field="attachments" class="attachments-container"></ul>
+				<form name="upload" class="input-group">
+					<label class="btn btn-primary">
+						<svg class="current-color icon" width="16" height="16" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M7 9H5l3-3 3 3H9v5H7V9zm5-4c0-.44-.91-3-4.5-3C5.08 2 3 3.92 3 6 1.02 6 0 7.52 0 9c0 1.53 1 3 3 3h3v-1.3H3c-1.62 0-1.7-1.42-1.7-1.7 0-.17.05-1.7 1.7-1.7h1.3V6c0-1.39 1.56-2.7 3.2-2.7 2.55 0 3.13 1.55 3.2 1.8v1.2H12c.81 0 2.7.22 2.7 2.2 0 2.09-2.25 2.2-2.7 2.2h-2V12h2c2.08 0 4-1.16 4-3.5C16 6.06 14.08 5 12 5z"/>
+						</svg>
+						<span>Upload</span>
+						<input type="file" name="upload" accept="image/jpeg" id="request-upload-btn" class="input" hidden="" />
+					</label>
+				</form>
+			</div>
+			<hr />
 			<button data-field="claim" class="btn btn-primary btn-wide block">
 				<span>Claim Request</span>
 			</button>
@@ -134,6 +146,16 @@
 				<b data-field="item-qty"></b>
 				<span>x</span>
 				<span class="underline" data-field="item-text"></span>
+			</li>
+		</template>
+		<template id="attachment-template">
+			<li class="attachment">
+				<a href="" download="" role="button" class="btn btn-primary inline-block underline" data-field="attachment-url">
+					<svg class="current-color icon" width="12" height="16" viewBox="0 0 12 16">
+						<path fill-rule="evenodd" d="M6 5h2v2H6V5zm6-.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v11l3-5 2 4 2-2 3 3V5z"/>
+					</svg>
+					<span data-field="attachment-filename"></span>
+				</a>
 			</li>
 		</template>
 	</body>

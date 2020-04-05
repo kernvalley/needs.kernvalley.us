@@ -11,7 +11,7 @@ customElements.define('contact-info', class HTMLRequestForm extends HTMLCustomEl
 				const target = event.target;
 				event.preventDefault();
 				const form = new FormData(event.target);
-				const resp = await fetch(new URL('./contact', ENDPOINT), {
+				const resp = await fetch(new URL('./contact/', ENDPOINT), {
 					method: 'POST',
 					mode: 'cors',
 					body: JSON.stringify(Object.fromEntries(form.entries())),
