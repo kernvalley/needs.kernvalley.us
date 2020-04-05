@@ -18,6 +18,29 @@ export const routes = {
 			router.go('');
 		}
 	},
+	messages: async ({router, user, args}) => {
+		if (await user.can('viewMessage')) {
+			const [uuid = null] = args;
+			if (typeof uuid === 'string') {
+				router.getComponent('message-details', uuid).then(async el => {
+					const main = document.getElementById('main');
+					[...main.children].forEach(el => el.remove());
+					await el.ready;
+					main.append(el);
+				});
+			} else {
+				router.getComponent('message-list').then(async el => {
+					const main = document.getElementById('main');
+					[...main.children].forEach(el => el.remove());
+					await el.ready;
+					main.append(el);
+				});
+			}
+		} else {
+			await alert('You do not have permission for that');
+			Router.go('');
+		}
+	},
 	logout: async ({router, user}) => {
 		await user.logOut();
 		router.go('');
