@@ -154,6 +154,47 @@ export const routes = {
 			});
 		}
 	},
+	users: async ({router, user, args}) => {
+		if (! await user.can('listUser')) {
+			await alert('You do not have permission for that');
+			router.go('');
+		} else {
+			const [uuid = null] = args;
+
+			if (typeof uuid === 'string') {
+				router.getComponent('user-details', uuid).then(async el => {
+					document.title = `User Details | ${title}`;
+					const main = document.getElementById('main');
+					[...main.children].forEach(el => el.remove());
+					await el.ready;
+					main.append(el);
+				});
+			} else {
+				router.getComponent('user-list').then(async el => {
+					document.title = `Users | ${title}`;
+					const main = document.getElementById('main');
+					[...main.children].forEach(el => el.remove());
+					await el.ready;
+					main.append(el);
+				});
+			}
+			// const url = new URL('./user/', ENDPOINT);
+			// url.searchParams.set('token', await user.token);
+			// if (typeof uuid === 'string') {
+			// 	url.searchParams.set('uuid', uuid);
+			// }
+			// const resp = await fetch(url, {
+			// 	mode: 'cors',
+			// 	headers: new Headers({
+			// 		Accept: 'application/json',
+			// 	}),
+			// });
+
+			// const data = await resp.json();
+			// console.info(data);
+			// router.go('');
+		}
+	},
 	'': async ({router}) => {
 		router.getComponent('home-component').then(async el => {
 			document.title = title;
