@@ -24,6 +24,8 @@ import '../components/request/list/list.js';
 import '../components/request/details/details.js';
 import '../components/user/list.js';
 import '../components/user/details.js';
+import '../components/password/recover-form.js';
+import '../components/password/reset-form.js';
 import '../components/messages/list.js';
 import '../components/messages/details.js';
 import '../components/contact/info.js';
