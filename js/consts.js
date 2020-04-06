@@ -154,6 +154,49 @@ export const routes = {
 			});
 		}
 	},
+	password: async ({user, router, args}) => {
+		const [action = null, token = null] = args;
+		switch (action) {
+		case 'forgot':
+			if (await user.loggedIn) {
+				alert('You are already logged in');
+				// @TODO Impelment change password form
+				router.go('password', 'change');
+			} else {
+				router.getComponent('password-recover-form').then(async el => {
+					document.title = `Forgot Password | ${title}`;
+					const main = document.getElementById('main');
+					[...main.children].forEach(el => el.remove());
+					await el.ready;
+					main.append(el);
+				});
+			}
+			break;
+
+		case 'reset':
+			if (await user.loggedIn) {
+				alert('You are already logged in');
+				// @TODO Impelment change password form
+				// router.go('password', 'change');
+				router.go('');
+			} else if (typeof token !== 'string' || token === '') {
+				await alert('No reset token');
+				router.go('login');
+			} else {
+				router.getComponent('password-reset-form', token).then(async el => {
+					document.title = `Reset Password | ${title}`;
+					const main = document.getElementById('main');
+					[...main.children].forEach(el => el.remove());
+					await el.ready;
+					main.append(el);
+				});
+			}
+			break;
+		default:
+			console.error(`Invalid action: ${action}`);
+			router.go('login');
+		}
+	},
 	users: async ({router, user, args}) => {
 		if (! await user.can('listUser')) {
 			await alert('You do not have permission for that');
@@ -178,21 +221,6 @@ export const routes = {
 					main.append(el);
 				});
 			}
-			// const url = new URL('./user/', ENDPOINT);
-			// url.searchParams.set('token', await user.token);
-			// if (typeof uuid === 'string') {
-			// 	url.searchParams.set('uuid', uuid);
-			// }
-			// const resp = await fetch(url, {
-			// 	mode: 'cors',
-			// 	headers: new Headers({
-			// 		Accept: 'application/json',
-			// 	}),
-			// });
-
-			// const data = await resp.json();
-			// console.info(data);
-			// router.go('');
 		}
 	},
 	'': async ({router}) => {

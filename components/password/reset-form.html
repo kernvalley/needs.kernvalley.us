@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="/css/index.css" />
+	</head>
+	<body>
+		<div class="center">
+			<form name="passwordReset" class="card shadow inline-block">
+				<fieldset class="no-border">
+					<input type="hidden" name="token" value="" class="input" />
+					<legend>Change Password</legend>
+					<div class="input-block center">
+						<img src="/img/octicons/file-media.svg" data-field="image" decoding="async" loading="lazy" height="96" width="96" class="round" alt="User Image" />
+						<br />
+						<b data-field="name">Name</b>
+					</div>
+					<div class="input-group">
+						<svg class="current-color icon" width="14" height="16" viewBox="0 0 14 16" aria-hidden="true">
+							<path fill-rule="evenodd" d="M6 5H4V4h2v1zm3 1H4v1h5V6zm5-.48V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V5.52c0-.33.16-.63.42-.81L2 3.58V3c0-.55.45-1 1-1h1.2L7 0l2.8 2H11c.55 0 1 .45 1 1v.58l1.58 1.13c.27.19.42.48.42.81zM3 7.5L7 10l4-2.5V3H3v4.5zm-2 6l4.5-3-4.5-3v6zm11 .5l-5-3-5 3h10zm1-6.5l-4.5 3 4.5 3v-6z"/>
+						</svg>
+						<input type="email" name="email" class="input" readonly="" value="" />
+					</div>
+					<div class="input-group">
+						<label aria-label="New Password" for="password">
+							<svg class="current-color icon" width="16" height="16" version="1" viewBox="0 0 16 16" aria-hidden="true">
+								<path d="M5 3C2.25 3 0 5.25 0 8s2.25 5 5 5c1.586 0 2.903-.845 3.813-2h5.593l.22-.75 1.03-4L15.97 5H8.813C7.903 3.845 6.586 3 5 3zm0 2c1.116 0 2.038.595 2.563 1.5l.312.5h5.531l-.53 2H7.874l-.312.5C7.038 10.405 6.116 11 5 11c-1.669 0-3-1.331-3-3s1.331-3 3-3z" overflow="visible"/>
+								<path d="M14.498 8H9l-.563 2H14z" opacity=".35" overflow="visible"/>
+								<path d="M5 8a1 1 0 1 1-2 0 1 1 0 1 1 2 0z" overflow="visible"/>
+							</svg>
+						</label>
+						<input type="password" name="password" id="password" class="input" autocomplete="new-password" placeholder="********" minlength="8" maxlength="70" required="" />
+					</div>
+				</fieldset>
+				<div class="btns">
+					<button type="submit" class="btn btn-accept btn-wide">
+						<svg class="current-color icon" width="12" height="16" viewBox="0 0 12 16">
+							<path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"/>
+						</svg>
+						<span>Submit</span>
+					</button>
+				</div>
+				<br />
+				<a href="/#login" class="color-link underline">
+					<svg class="current-color icon" height="16" width="16" viewBox="0 0 14 16">
+						<path fill-rule="evenodd" d="M7 6.75V12h4V8h1v4c0 .55-.45 1-1 1H7v3l-5.45-2.72c-.33-.17-.55-.52-.55-.91V1c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v3h-1V1H3l4 2v2.25L10 3v2h4v2h-4v2L7 6.75z"></path>
+					</svg>
+					<span>Go to Login</span>
+				</a>
+			</form>
+		</div>
+	</body>
+</html>
