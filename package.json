@@ -30,7 +30,7 @@
   "bugs": {
     "url": "https://github.com/kernvalley/needs.kernvalley.us/issues"
   },
-  "homepage": "https://github.com/kernvalley/needs.kernvalley.us",
+  "homepage": "https://stayhome.kernvalley.us",
   "scripts": {
     "preinstall": "if [ -f '.gitmodules' ]; then git submodule update --recursive --init; fi",
     "postinstall": "npm run build",
