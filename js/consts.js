@@ -201,15 +201,15 @@ export const routes = {
 		} else {
 			router.getComponent('volunteer-all').then(async el => {
 				const main = document.getElementById('main');
-					const els = [...main.children];
-					el.hidden = true;
-					main.append(el);
-					await el.ready;
-					await el.stylesLoaded;
-					els.forEach(el => el.remove());
-					el.hidden = false;
-					document.title = `Volunteers | ${title}`;
-					document.body.classList.remove('no-pointer-events');
+				const els = [...main.children];
+				el.hidden = true;
+				main.append(el);
+				await el.ready;
+				await el.stylesLoaded;
+				els.forEach(el => el.remove());
+				el.hidden = false;
+				document.title = `Volunteers | ${title}`;
+				document.body.classList.remove('no-pointer-events');
 			});
 		}
 	},
