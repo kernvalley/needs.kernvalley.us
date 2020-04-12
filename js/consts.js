@@ -7,12 +7,18 @@ export const ENDPOINT = DEBUG ? 'http://localhost:8081' : 'https://b5774ac5-2d54
 export const routes = {
 	login: async ({router, user}) => {
 		if (! await user.loggedIn) {
+			document.body.classList.add('no-pointer-events');
 			router.getComponent('login-form').then(async el => {
-				document.title = `Login | ${title}`;
 				const main = document.getElementById('main');
-				[...main.children].forEach(el => el.remove());
-				await el.ready;
+				const els = [...main.children];
+				el.hidden = true;
 				main.append(el);
+				await el.ready;
+				await el.stylesLoaded;
+				els.forEach(el => el.remove());
+				el.hidden = false;
+				document.title = `Login | ${title}`;
+				document.body.classList.remove('no-pointer-events');
 			});
 		} else {
 			router.go('');
@@ -21,22 +27,37 @@ export const routes = {
 	messages: async ({router, user, args}) => {
 		if (await user.can('viewMessage')) {
 			const [uuid = null] = args;
+			document.body.classList.add('no-pointer-events');
+
 			if (typeof uuid === 'string') {
 				router.getComponent('message-details', uuid).then(async el => {
 					const main = document.getElementById('main');
-					[...main.children].forEach(el => el.remove());
-					await el.ready;
+					const els = [...main.children];
+					el.hidden = true;
 					main.append(el);
+					await el.ready;
+					await el.stylesLoaded;
+					els.forEach(el => el.remove());
+					el.hidden = false;
+					document.title = `Message | ${title}`;
+					document.body.classList.remove('no-pointer-events');
 				});
 			} else {
 				router.getComponent('message-list').then(async el => {
 					const main = document.getElementById('main');
-					[...main.children].forEach(el => el.remove());
-					await el.ready;
+					const els = [...main.children];
+					el.hidden = true;
 					main.append(el);
+					await el.ready;
+					await el.stylesLoaded;
+					els.forEach(el => el.remove());
+					el.hidden = false;
+					document.title = `Messages | ${title}`;
+					document.body.classList.remove('no-pointer-events');
 				});
 			}
 		} else {
+			document.body.classList.remove('no-pointer-events');
 			await alert('You do not have permission for that');
 			Router.go('');
 		}
@@ -46,13 +67,20 @@ export const routes = {
 		router.go('');
 	},
 	register: async ({user}) => {
-		if (!await  user.loggedIn) {
-			document.title = `Register | ${title}`;
+		if (! await  user.loggedIn) {
+			document.body.classList.add('no-pointer-events');
+
 			Router.getComponent('registration-form').then(async el => {
 				const main = document.getElementById('main');
-				[...main.children].forEach(el => el.remove());
-				await el.ready;
+				const els = [...main.children];
+				el.hidden = true;
 				main.append(el);
+				await el.ready;
+				await el.stylesLoaded;
+				els.forEach(el => el.remove());
+				el.hidden = false;
+				document.title = `Register | ${title}`;
+				document.body.classList.remove('no-pointer-events');
 			});
 		} else {
 			Router.go('');
@@ -60,135 +88,207 @@ export const routes = {
 	},
 	requests: async ({router, user, args}) => {
 		const [uuid = null] = args;
+		document.body.classList.add('no-pointer-events');
+
 		if (uuid === 'new') {
 			if (await router.user.can('createNeed')) {
 				router.getComponent('request-form').then(async el => {
-					document.title = `Request Form | ${title}`;
 					const main = document.getElementById('main');
-					[...main.children].forEach(el => el.remove());
-					await el.ready;
+					const els = [...main.children];
+					el.hidden = true;
 					main.append(el);
+					await el.ready;
+					await el.stylesLoaded;
+					els.forEach(el => el.remove());
+					el.hidden = false;
+					document.title = `Request Form | ${title}`;
+					document.body.classList.remove('no-pointer-events');
 				});
 			} else {
+				document.body.classList.remove('no-pointer-events');
 				await alert('You do not have permission for that');
 				router.go('');
 			}
 		} else if (uuid === 'admin') {
 			if (await router.user.can('adminCreateNeed')) {
+				document.body.classList.add('no-pointer-events');
 				router.getComponent('admin-request-form').then(async el => {
-					document.title = `Admin Request Form | ${title}`;
 					const main = document.getElementById('main');
-					[...main.children].forEach(el => el.remove());
-					await el.ready;
+					const els = [...main.children];
+					el.hidden = true;
 					main.append(el);
+					await el.ready;
+					await el.stylesLoaded;
+					els.forEach(el => el.remove());
+					el.hidden = false;
+					document.title = `Admin Request Form | ${title}`;
+					document.body.classList.remove('no-pointer-events');
 				});
 			} else {
+				document.body.classList.remove('no-pointer-events');
 				await alert('You do not have permission for that');
 				router.go('requests', 'new');
 			}
 		} else if (uuid === null) {
 			if (! await user.can('listNeed')) {
+				document.body.classList.remove('no-pointer-events');
 				await alert('You do not have permssion to access that');
 				history.back();
 			} else {
 				router.getComponent('request-list').then(async el => {
-					document.title = `Request Form | ${title}`;
 					const main = document.getElementById('main');
-					[...main.children].forEach(el => el.remove());
-					await el.ready;
+					const els = [...main.children];
+					el.hidden = true;
 					main.append(el);
+					await el.ready;
+					await el.stylesLoaded;
+					els.forEach(el => el.remove());
+					el.hidden = false;
+					document.title = `Request Form | ${title}`;
+					document.body.classList.remove('no-pointer-events');
 				});
 			}
 		} else {
 			// @TODO check permission
+			document.body.classList.add('no-pointer-events');
 			router.getComponent('request-details', uuid).then(async el => {
-				document.title = `Request Details | ${title}`;
 				const main = document.getElementById('main');
-				[...main.children].forEach(el => el.remove());
-				await el.ready;
+				const els = [...main.children];
+				el.hidden = true;
 				main.append(el);
+				await el.ready;
+				await el.stylesLoaded;
+				els.forEach(el => el.remove());
+				el.hidden = false;
+				document.title = `Request Details | ${title}`;
+				document.body.classList.remove('no-pointer-events');
 			});
 		}
 	},
 	contact: async ({router}) => {
+		document.body.classList.add('no-pointer-events');
+
 		router.getComponent('contact-info').then(async el => {
-			document.title = `Contact | ${title}`;
 			const main = document.getElementById('main');
-			[...main.children].forEach(el => el.remove());
-			await el.ready;
+			const els = [...main.children];
+			el.hidden = true;
 			main.append(el);
+			await el.ready;
+			await el.stylesLoaded;
+			els.forEach(el => el.remove());
+			el.hidden = false;
+			document.title = `Contact | ${title}`;
+			document.body.classList.remove('no-pointer-events');
 		});
 	},
 	volunteers: async ({router, args}) => {
 		const [uuid = null] = args;
+		document.body.classList.add('no-pointer-events');
+
 		if (typeof uuid === 'string') {
 			router.getComponent('volunteer-individual', uuid).then(async el => {
-				document.title = `Volunteers | ${title}`;
 				const main = document.getElementById('main');
-				[...main.children].forEach(el => el.remove());
-				await el.ready;
+				const els = [...main.children];
+				el.hidden = true;
 				main.append(el);
+				await el.ready;
+				await el.stylesLoaded;
+				els.forEach(el => el.remove());
+				el.hidden = false;
+				document.title = `Volunteers | ${title}`;
+				document.body.classList.remove('no-pointer-events');
 			});
 		} else {
 			router.getComponent('volunteer-all').then(async el => {
-				document.title = `Volunteers | ${title}`;
 				const main = document.getElementById('main');
-				[...main.children].forEach(el => el.remove());
-				await el.ready;
+				const els = [...main.children];
+				el.hidden = true;
 				main.append(el);
+				await el.ready;
+				await el.stylesLoaded;
+				els.forEach(el => el.remove());
+				el.hidden = false;
+				document.title = `Volunteers | ${title}`;
+				document.body.classList.remove('no-pointer-events');
 			});
 		}
 	},
 	createPerson: async ({router, /*user*/}) => {
 		// @TODO Check user permissions
 		if (! await router.user.can('createPerson')) {
+			document.body.classList.remove('no-pointer-events');
+
 			await alert('You do not have permissions for that');
 			await router.go('');
 		} else {
+			document.body.classList.add('no-pointer-events');
+
 			router.getComponent('person-new').then(async el => {
-				document.title = `Create Person | ${title}`;
 				const main = document.getElementById('main');
-				[...main.children].forEach(el => el.remove());
-				await el.ready;
+				const els = [...main.children];
+				el.hidden = true;
 				main.append(el);
+				await el.ready;
+				await el.stylesLoaded;
+				els.forEach(el => el.remove());
+				el.hidden = false;
+				document.title = `Create Person | ${title}`;
+				document.body.classList.remove('no-pointer-events');
 			});
 		}
 	},
 	password: async ({user, router, args}) => {
 		const [action = null, token = null] = args;
+		document.body.classList.add('no-pointer-events');
+
 		switch (action) {
 		case 'forgot':
 			if (await user.loggedIn) {
+				document.body.classList.remove('no-pointer-events');
+
 				alert('You are already logged in');
 				// @TODO Impelment change password form
 				router.go('password', 'change');
 			} else {
 				router.getComponent('password-recover-form').then(async el => {
-					document.title = `Forgot Password | ${title}`;
 					const main = document.getElementById('main');
-					[...main.children].forEach(el => el.remove());
-					await el.ready;
+					const els = [...main.children];
+					el.hidden = true;
 					main.append(el);
+					await el.ready;
+					await el.stylesLoaded;
+					els.forEach(el => el.remove());
+					el.hidden = false;
+					document.title = `Forgot Password | ${title}`;
+					document.body.classList.remove('no-pointer-events');
 				});
 			}
 			break;
 
 		case 'reset':
 			if (await user.loggedIn) {
+				document.body.classList.remove('no-pointer-events');
 				alert('You are already logged in');
 				// @TODO Impelment change password form
 				// router.go('password', 'change');
 				router.go('');
 			} else if (typeof token !== 'string' || token === '') {
+				document.body.classList.remove('no-pointer-events');
 				await alert('No reset token');
 				router.go('login');
 			} else {
+				document.body.classList.add('no-pointer-events');
 				router.getComponent('password-reset-form', token).then(async el => {
-					document.title = `Reset Password | ${title}`;
 					const main = document.getElementById('main');
-					[...main.children].forEach(el => el.remove());
-					await el.ready;
+					const els = [...main.children];
+					el.hidden = true;
 					main.append(el);
+					await el.ready;
+					await el.stylesLoaded;
+					els.forEach(el => el.remove());
+					el.hidden = false;
+					document.title = `Reset Password | ${title}`;
+					document.body.classList.remove('no-pointer-events');
 				});
 			}
 			break;
@@ -199,37 +299,56 @@ export const routes = {
 	},
 	users: async ({router, user, args}) => {
 		if (! await user.can('listUser')) {
+			document.body.classList.remove('no-pointer-events');
 			await alert('You do not have permission for that');
 			router.go('');
 		} else {
 			const [uuid = null] = args;
+			document.body.classList.add('no-pointer-events');
 
 			if (typeof uuid === 'string') {
 				router.getComponent('user-details', uuid).then(async el => {
-					document.title = `User Details | ${title}`;
 					const main = document.getElementById('main');
-					[...main.children].forEach(el => el.remove());
-					await el.ready;
+					const els = [...main.children];
+					el.hidden = true;
 					main.append(el);
+					await el.ready;
+					await el.stylesLoaded;
+					els.forEach(el => el.remove());
+					el.hidden = false;
+					document.title = `User Details | ${title}`;
+					document.body.classList.remove('no-pointer-events');
 				});
 			} else {
 				router.getComponent('user-list').then(async el => {
-					document.title = `Users | ${title}`;
 					const main = document.getElementById('main');
-					[...main.children].forEach(el => el.remove());
-					await el.ready;
+					const els = [...main.children];
+					el.hidden = true;
 					main.append(el);
+					await el.ready;
+					await el.stylesLoaded;
+					els.forEach(el => el.remove());
+					el.hidden = false;
+					document.title = `Users | ${title}`;
+					document.body.classList.remove('no-pointer-events');
 				});
 			}
 		}
 	},
 	'': async ({router}) => {
+		document.body.classList.add('no-pointer-events');
+
 		router.getComponent('home-component').then(async el => {
-			document.title = title;
 			const main = document.getElementById('main');
-			[...main.children].forEach(el => el.remove());
-			await el.ready;
+			const els = [...main.children];
+			el.hidden = true;
 			main.append(el);
+			await el.ready;
+			await el.stylesLoaded;
+			document.title = title;
+			els.forEach(el => el.remove());
+			el.hidden = false;
+			document.body.classList.remove('no-pointer-events');
 		});
 	},
 };
