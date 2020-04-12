@@ -23,7 +23,7 @@ customElements.define('volunteer-all', class HTMLIndividualVolunteerElement exte
 					const link = new URL(location.href);
 					const items = users.map(user => {
 						const item = template.cloneNode(true);
-						link.hash = `#/volunteers/${user.identifier}`;
+						link.hash = `#volunteers/${user.identifier}`;
 						$('[data-field="name"]', item).text(user.name);
 						$('[data-field="role"]', item).text(user.role);
 						$('[data-field="image"]', item).attr({src: user.image});

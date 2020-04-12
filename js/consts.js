@@ -187,7 +187,7 @@ export const routes = {
 
 		if (typeof uuid === 'string') {
 			router.getComponent('volunteer-individual', uuid).then(async el => {
-				document.title = `Volunteers | ${title}`;
+				const main = document.getElementById('main');
 				const els = [...main.children];
 				el.hidden = true;
 				main.append(el);
@@ -195,7 +195,7 @@ export const routes = {
 				await el.stylesLoaded;
 				els.forEach(el => el.remove());
 				el.hidden = false;
-				const main = document.getElementById('main');
+				document.title = `Volunteers | ${title}`;
 				document.body.classList.remove('no-pointer-events');
 			});
 		} else {
